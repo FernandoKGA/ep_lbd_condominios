@@ -13,12 +13,16 @@ CREATE DATABASE adm_condominio
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
--- rodar dentro do Query Tools/Editor da Database
+-- rodar dentro do Query Tools da Database
 
 CREATE SCHEMA adm_condominio AUTHORIZATION postgres;
 GRANT ALL ON SCHEMA adm_condominio TO postgres;
 
 SET ROLE TO postgres;
+
+-- mudando de schema
+
+SET search_path TO adm_condominio;
 
 -- enumeradores
 
@@ -26,7 +30,7 @@ CREATE TYPE tipo_assembleia AS ENUM('AGO','AGE');
 
 -- entidades fortes
 
-CREATE TABLE Endereco (
+CREATE TABLE adm_condominio.Endereco (
   id_endereco SERIAL NOT NULL PRIMARY KEY,
   estado VARCHAR(19) NOT NULL,
   cidade VARCHAR(30) NOT NULL,
@@ -36,14 +40,14 @@ CREATE TABLE Endereco (
   CONSTRAINT restricao_cep CHECK (cep < 100000000)
 );
 
-CREATE TABLE Administradora (
+CREATE TABLE adm_condominio.Administradora (
   cnpj INT NOT NULL PRIMARY KEY,
   nome_administradora VARCHAR(50) NOT NULL,
   fk_id_endereco_matriz INT NOT NULL REFERENCES Endereco(id_endereco),
   CONSTRAINT restricao_cnpj CHECK (cnpj < 100000000000000)
 );
 
-CREATE TABLE Filial (
+CREATE TABLE adm_condominio.Filial (
   id_filial SERIAL NOT NULL PRIMARY KEY,
   nome_filial VARCHAR(50) NOT NULL,
   regiao VARCHAR(20) NOT NULL,
@@ -51,13 +55,13 @@ CREATE TABLE Filial (
   fk_id_administradora INT NOT NULL REFERENCES Administradora(cnpj)
 );
 
-CREATE TABLE Condominio (
+CREATE TABLE adm_condominio.Condominio (
   id_condominio SERIAL NOT NULL PRIMARY KEY,
   tipo_condominio CHAR(1) NOT NULL,
   fk_id_endereco INT NOT NULL REFERENCES Endereco(id_endereco)
 );
 
-CREATE TABLE Pessoa (
+CREATE TABLE adm_condominio.Pessoa (
   cpf INT NOT NULL PRIMARY KEY,
   nome VARCHAR(40) NOT NULL,
   data_nascimento DATE NOT NULL,
@@ -65,7 +69,7 @@ CREATE TABLE Pessoa (
   CONSTRAINT restricao_cpf CHECK (cpf < 100000000000)
 );
 
-CREATE TABLE Veiculo (
+CREATE TABLE adm_condominio.Veiculo (
   id_veiculo SERIAL NOT NULL PRIMARY KEY,
   placa CHAR(7) NOT NULL,
   cidade VARCHAR(30) NOT NULL,
@@ -75,14 +79,14 @@ CREATE TABLE Veiculo (
   cor VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE Entrada_Saida (
+CREATE TABLE adm_condominio.Entrada_Saida (
   id_es SERIAL NOT NULL PRIMARY KEY,
   data_hora TIMESTAMP NOT NULL,
   acao VARCHAR(7) NOT NULL,
   tecnologia VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE Edificio (
+CREATE TABLE adm_condominio.Edificio (
   id_edificio SERIAL NOT NULL PRIMARY KEY,
   nome_edificio VARCHAR(100) NOT NULL,
   bloco VARCHAR(10) NOT NULL,
@@ -90,18 +94,18 @@ CREATE TABLE Edificio (
   qtd_finais INT NOT NULL
 );
 
-CREATE TABLE Moradia (
+CREATE TABLE adm_condominio.Moradia (
   id_moradia SERIAL NOT NULL PRIMARY KEY,
   tipo_moradia CHAR(1) NOT NULL
 );
 
-CREATE TABLE Login (
+CREATE TABLE adm_condominio.Login (
   id_usuario SERIAL NOT NULL PRIMARY KEY,
   usuario VARCHAR(30) NOT NULL,
   senha TEXT NOT NULL 
 );
 
-CREATE TABLE Documento (
+CREATE TABLE adm_condominio.Documento (
   id_documento SERIAL NOT NULL PRIMARY KEY,
   nome_documento VARCHAR(150) NOT NULL,
   status_documento VARCHAR(20) NOT NULL,
@@ -111,16 +115,17 @@ CREATE TABLE Documento (
 
 -- entidades fracas
 
-CREATE TABLE Espaco (
-  fk_id_condominio INT NOT NULL REFERENCES Condominio,
-  id_espaco SERIAL NOT NULL PRIMARY KEY,
+CREATE TABLE adm_condominio.Espaco (
+  fk_id_condominio INT NOT NULL REFERENCES Condominio(id_condominio),
+  id_espaco SERIAL NOT NULL,
   nome_espaco VARCHAR(30) NOT NULL,
   capacidade INT NOT NULL,
   reservavel BOOLEAN NOT NULL,
-  CONSTRAINT restricao_capac CHECK (capacidade < 200)
+  CONSTRAINT restricao_capac CHECK (capacidade < 200),
+  CONSTRAINT pk_espaco PRIMARY KEY (fk_id_condominio, id_espaco)
 );
 
-CREATE TABLE Assembleia (
+CREATE TABLE adm_condominio.Assembleia (
   fk_id_condominio INT NOT NULL REFERENCES Condominio(id_condominio),
   id_assembleia SERIAL NOT NULL,
   data DATE NOT NULL,
@@ -136,7 +141,7 @@ CREATE TABLE Assembleia (
   PRIMARY KEY (fk_id_condominio, id_assembleia)
 );
 
-CREATE TABLE Apartamento (
+CREATE TABLE adm_condominio.Apartamento (
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia),
   id_apartamento SERIAL NOT NULL,
   andar INT NOT NULL,
@@ -145,7 +150,7 @@ CREATE TABLE Apartamento (
   PRIMARY KEY (fk_id_moradia, id_apartamento)
 );
 
-CREATE TABLE Casa (
+CREATE TABLE adm_condominio.Casa (
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia),
   id_casa SERIAL NOT NULL,
   fk_id_endereco INT NOT NULL REFERENCES Endereco(id_endereco),
@@ -154,7 +159,7 @@ CREATE TABLE Casa (
 
 -- relacionamentos
 
-CREATE TABLE Reserva (
+CREATE TABLE adm_condominio.Reserva (
   fk_id_pessoa INT NOT NULL REFERENCES Pessoa(cpf),
   fk_id_espaco INT NOT NULL REFERENCES Espaco(id_espaco),
   hora_inicial TIME NOT NULL,
@@ -162,63 +167,63 @@ CREATE TABLE Reserva (
   data DATE NOT NULL
 );
 
-CREATE TABLE Comparece (
+CREATE TABLE adm_condominio.Comparece (
   fk_id_pessoa INT NOT NULL REFERENCES Pessoa(cpf),
   fk_id_assembleia INT NOT NULL,
   fk_id_condominio INT NOT NULL,
   FOREIGN KEY (fk_id_assembleia, fk_id_condominio) REFERENCES Assembleia
 );
 
-CREATE TABLE Condominio_Filial (
+CREATE TABLE adm_condominio.Condominio_Filial (
   fk_id_filial INT NOT NULL REFERENCES Filial(id_filial),
   fk_id_condominio INT NOT NULL REFERENCES Condominio(id_condominio)
 );
 
-CREATE TABLE Condominio_Moradia (
+CREATE TABLE adm_condominio.Condominio_Moradia (
   fk_id_condominio INT NOT NULL REFERENCES Condominio(id_condominio),
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia)
 );
 
-CREATE TABLE Moradia_Pessoa (
+CREATE TABLE adm_condominio.Moradia_Pessoa (
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia),
   fk_id_pessoa INT NOT NULL REFERENCES Pessoa(cpf)
 );
 
-CREATE TABLE Moradia_Edificio (
+CREATE TABLE adm_condominio.Moradia_Edificio (
   fk_id_edificio INT NOT NULL REFERENCES Edificio(id_edificio),
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia)
 );
 
-CREATE TABLE Es_Pessoa (
+CREATE TABLE adm_condominio.Es_Pessoa (
   fk_id_es INT NOT NULL REFERENCES Entrada_Saida(id_es),
   fk_id_pessoa INT NOT NULL REFERENCES Pessoa(cpf)
 );
 
-CREATE TABLE Es_Veiculo (
+CREATE TABLE adm_condominio.Es_Veiculo (
   fk_id_es INT NOT NULL REFERENCES Entrada_Saida(id_es),
   fk_id_veiculo INT NOT NULL REFERENCES Veiculo(id_veiculo)
 );
 
-CREATE TABLE Veiculo_Moradia (
+CREATE TABLE adm_condominio.Veiculo_Moradia (
   fk_id_veiculo INT NOT NULL REFERENCES Veiculo(id_veiculo),
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia)
 );
 
 -- relacoes de documento e outros
 
-CREATE TABLE Administradora_Documento (
+CREATE TABLE adm_condominio.Administradora_Documento (
   fk_cnpj INT NOT NULL REFERENCES Administradora(cnpj),
   fk_id_documento INT NOT NULL REFERENCES Documento(id_documento)  
 );
 
-CREATE TABLE Assembleia_Documento (
+CREATE TABLE adm_condominio.Assembleia_Documento (
   fk_id_assembleia INT NOT NULL,
   fk_id_condominio INT NOT NULL,
   fk_id_documento INT NOT NULL REFERENCES Documento(id_documento),
   FOREIGN KEY (fk_id_assembleia, fk_id_condominio) REFERENCES Assembleia
 );
 
-CREATE TABLE Condominio_Documento (
+CREATE TABLE adm_condominio.Condominio_Documento (
   fk_id_condominio INT NOT NULL REFERENCES Condominio(id_condominio),
   fk_id_documento INT NOT NULL REFERENCES Documento(id_documento)
 );
