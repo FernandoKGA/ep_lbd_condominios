@@ -2,20 +2,20 @@
 
 CREATE TABLE adm_condominio.Endereco (
   id_endereco SERIAL NOT NULL PRIMARY KEY,
-  estado VARCHAR(19) NOT NULL,
-  cidade VARCHAR(30) NOT NULL,
-  logradouro VARCHAR(100) NOT NULL,
+  estado VARCHAR(50) NOT NULL,
+  cidade VARCHAR(255) NOT NULL,
+  logradouro VARCHAR(255) NOT NULL,
   numero INT NOT NULL,
   cep INT NOT NULL,
   CONSTRAINT restricao_cep CHECK (cep < 100000000)
 );
 
 CREATE TABLE adm_condominio.Administradora (
-	cnpj INT NOT NULL,
+  id_administradora SERIAL NOT NULL,
+	cnpj VARCHAR(14) NOT NULL,
 	nome_administradora VARCHAR(50) NOT NULL,
 	fk_id_endereco_matriz INT NOT NULL REFERENCES adm_condominio.Endereco(id_endereco),
-	CONSTRAINT restricao_cnpj CHECK (cnpj < 100000000000000),
-	CONSTRAINT pk_administradora PRIMARY KEY (cnpj)
+	CONSTRAINT pk_administradora PRIMARY KEY (id_administradora)
 );
 
 CREATE TABLE adm_condominio.Filial (
