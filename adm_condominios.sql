@@ -23,7 +23,7 @@ CREATE TABLE adm_condominio.Filial (
   nome_filial VARCHAR(50) NOT NULL,
   regiao VARCHAR(20) NOT NULL,
   fk_id_endereco INT NOT NULL REFERENCES adm_condominio.Endereco(id_endereco),
-  fk_id_administradora INT NOT NULL REFERENCES adm_condominio.Administradora(cnpj)
+  fk_id_administradora INT NOT NULL REFERENCES adm_condominio.Administradora(id_administradora)
 );
 
 -- A = associação e E = edificio
@@ -38,7 +38,7 @@ CREATE TABLE adm_condominio.Pessoa (
   cpf VARCHAR(11) NOT NULL,
   nome VARCHAR(40) NOT NULL,
   data_nascimento DATE NOT NULL,
-  sexo CHAR(1) NOT NULL,
+  sexo CHAR(1) NOT NULL
 );
 
 CREATE TABLE adm_condominio.Veiculo (
@@ -102,11 +102,11 @@ CREATE TABLE adm_condominio.Assembleia (
   id_assembleia SERIAL NOT NULL,
   data DATE NOT NULL,
   -- separar em outra tabela?
-  id_sindico INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
-  id_subsindico INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
-  id_conselheiro_1 INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
-  id_conselheiro_2 INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
-  id_conselheiro_3 INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
+  id_sindico INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_subsindico INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_conselheiro_1 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_conselheiro_2 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_conselheiro_3 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
   -- tabela corpo administrativo
   assunto VARCHAR(100) NOT NULL,
   tipo tipo_assembleia NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE adm_condominio.Casa (
 -- relacionamentos
 
 CREATE TABLE adm_condominio.Reserva (
-  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
+  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
   fk_id_espaco INT NOT NULL REFERENCES adm_condominio.Espaco(id_espaco),
   hora_inicial TIME NOT NULL,
   hora_final TIME NOT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE adm_condominio.Reserva (
 );
 
 CREATE TABLE adm_condominio.Comparece (
-  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf),
+  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
   fk_id_assembleia INT NOT NULL,
   fk_id_condominio INT NOT NULL,
   FOREIGN KEY (fk_id_assembleia, fk_id_condominio) REFERENCES adm_condominio.Assembleia
@@ -156,7 +156,7 @@ CREATE TABLE adm_condominio.Condominio_Moradia (
 
 CREATE TABLE adm_condominio.Moradia_Pessoa (
   fk_id_moradia INT NOT NULL REFERENCES adm_condominio.Moradia(id_moradia),
-  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf)
+  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa)
 );
 
 CREATE TABLE adm_condominio.Moradia_Edificio (
@@ -166,7 +166,7 @@ CREATE TABLE adm_condominio.Moradia_Edificio (
 
 CREATE TABLE adm_condominio.Es_Pessoa (
   fk_id_es INT NOT NULL REFERENCES adm_condominio.Entrada_Saida(id_es),
-  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(cpf)
+  fk_id_pessoa INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa)
 );
 
 CREATE TABLE adm_condominio.Es_Veiculo (
@@ -182,7 +182,7 @@ CREATE TABLE adm_condominio.Veiculo_Moradia (
 -- relacoes de documento e outros
 
 CREATE TABLE adm_condominio.Administradora_Documento (
-  fk_cnpj INT NOT NULL REFERENCES adm_condominio.Administradora(cnpj),
+  fk_cnpj INT NOT NULL REFERENCES adm_condominio.Administradora(id_administradora),
   fk_id_documento INT NOT NULL REFERENCES adm_condominio.Documento(id_documento)  
 );
 
