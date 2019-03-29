@@ -51,11 +51,12 @@ CREATE TABLE adm_condominio.Veiculo (
   cor VARCHAR(20) NOT NULL
 );
 
+-- "E" para entrada; "S" para saída
 CREATE TABLE adm_condominio.Entrada_Saida (
   id_es SERIAL NOT NULL PRIMARY KEY,
   data_hora TIMESTAMP NOT NULL,
-  acao VARCHAR(7) NOT NULL,
-  tecnologia VARCHAR(10) NOT NULL
+  acao CHAR(1) NOT NULL,
+  tecnologia VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE adm_condominio.Edificio (
@@ -63,9 +64,11 @@ CREATE TABLE adm_condominio.Edificio (
   nome_edificio VARCHAR(255) NOT NULL,
   bloco VARCHAR(10) NOT NULL,
   andares INT NOT NULL,
-  qtd_finais INT NOT NULL
+  qtd_finais INT NOT NULL,
+  fk_id_condominio INT NOT NULL REFERENCES adm_condominio.Condominio(id_condominio)
 );
 
+-- "c" para casa e "a" para apartamento
 CREATE TABLE adm_condominio.Moradia (
   id_moradia SERIAL NOT NULL PRIMARY KEY,
   tipo_moradia CHAR(1) NOT NULL
@@ -80,7 +83,7 @@ CREATE TABLE adm_condominio.Login (
 CREATE TABLE adm_condominio.Documento (
   id_documento SERIAL NOT NULL PRIMARY KEY,
   nome_documento VARCHAR(150) NOT NULL,
-  status_documento VARCHAR(20) NOT NULL,
+  status_documento VARCHAR(20) NOT NULL, -- Quantos? Quais? (1 - Aprovado, 2 - Recusado, 3 - Em Aprovação, 4 - Em Processamento, 5 - Não Disponível)
   data TIMESTAMP NOT NULL,
   caminho_documento TEXT NOT NULL
 );
@@ -123,7 +126,7 @@ CREATE TABLE adm_condominio.Apartamento (
 
 CREATE TABLE adm_condominio.Casa (
   fk_id_moradia INT NOT NULL REFERENCES adm_condominio.Moradia(id_moradia),
-  fk_id_endereco INT NOT NULL REFERENCES adm_condominio.Endereco(id_endereco),
+  numero_casa INT NOT NULL,
   PRIMARY KEY (fk_id_moradia)
 );
 
