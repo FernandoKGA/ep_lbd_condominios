@@ -92,7 +92,7 @@ CREATE TABLE adm_condominio.Espaco (
   capacidade INT NOT NULL,
   reservavel BOOLEAN NOT NULL,
   CONSTRAINT restricao_capac CHECK (capacidade < 200),
-  CONSTRAINT pk_espaco PRIMARY KEY (fk_id_condominio, id_espaco)
+  PRIMARY KEY (fk_id_condominio, id_espaco)
 );
 
 CREATE TABLE adm_condominio.Assembleia (
@@ -105,26 +105,24 @@ CREATE TABLE adm_condominio.Assembleia (
   id_conselheiro_1 INT NOT NULL REFERENCES Pessoa(cpf),
   id_conselheiro_2 INT NOT NULL REFERENCES Pessoa(cpf),
   id_conselheiro_3 INT NOT NULL REFERENCES Pessoa(cpf),
-  --
+  -- tabela corpo administrativo
   assunto VARCHAR(100) NOT NULL,
   tipo tipo_assembleia NOT NULL,
   PRIMARY KEY (fk_id_condominio, id_assembleia)
 );
 
 CREATE TABLE adm_condominio.Apartamento (
-  fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia),
-  id_apartamento SERIAL NOT NULL,
+  fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia),  
   andar INT NOT NULL,
   final INT NOT NULL,
   numero_ap INT NOT NULL,
-  PRIMARY KEY (fk_id_moradia, id_apartamento)
+  PRIMARY KEY (fk_id_moradia)
 );
 
 CREATE TABLE adm_condominio.Casa (
   fk_id_moradia INT NOT NULL REFERENCES Moradia(id_moradia),
-  id_casa SERIAL NOT NULL,
   fk_id_endereco INT NOT NULL REFERENCES Endereco(id_endereco),
-  PRIMARY KEY (fk_id_moradia,id_casa)
+  PRIMARY KEY (fk_id_moradia)
 );
 
 -- relacionamentos
