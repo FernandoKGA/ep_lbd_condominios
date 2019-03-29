@@ -26,6 +26,7 @@ CREATE TABLE adm_condominio.Filial (
   fk_id_administradora INT NOT NULL REFERENCES adm_condominio.Administradora(cnpj)
 );
 
+-- A = associação e E = edificio
 CREATE TABLE adm_condominio.Condominio (
   id_condominio SERIAL NOT NULL PRIMARY KEY,
   tipo_condominio CHAR(1) NOT NULL,
@@ -33,11 +34,11 @@ CREATE TABLE adm_condominio.Condominio (
 );
 
 CREATE TABLE adm_condominio.Pessoa (
-  cpf INT NOT NULL PRIMARY KEY,
+  id_pessoa SERIAL NOT NULL PRIMARY KEY,
+  cpf VARCHAR(11) NOT NULL,
   nome VARCHAR(40) NOT NULL,
   data_nascimento DATE NOT NULL,
   sexo CHAR(1) NOT NULL,
-  CONSTRAINT restricao_cpf CHECK (cpf < 100000000000)
 );
 
 CREATE TABLE adm_condominio.Veiculo (
@@ -59,7 +60,7 @@ CREATE TABLE adm_condominio.Entrada_Saida (
 
 CREATE TABLE adm_condominio.Edificio (
   id_edificio SERIAL NOT NULL PRIMARY KEY,
-  nome_edificio VARCHAR(100) NOT NULL,
+  nome_edificio VARCHAR(255) NOT NULL,
   bloco VARCHAR(10) NOT NULL,
   andares INT NOT NULL,
   qtd_finais INT NOT NULL
