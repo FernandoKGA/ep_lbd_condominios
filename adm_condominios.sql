@@ -41,6 +41,16 @@ CREATE TABLE adm_condominio.Pessoa (
   sexo CHAR(1) NOT NULL
 );
 
+CREATE TABLE adm_condominio.Corpo_Administrativo (
+  id_corpo SERIAL NOT NULL PRIMARY KEY,
+  id_sindico INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_subsindico INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_conselheiro_1 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_conselheiro_2 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  id_conselheiro_3 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
+  data_eleicao DATE NOT NULL
+);
+
 CREATE TABLE adm_condominio.Veiculo (
   id_veiculo SERIAL NOT NULL PRIMARY KEY,
   placa CHAR(7) NOT NULL,
@@ -103,14 +113,8 @@ CREATE TABLE adm_condominio.Espaco (
 CREATE TABLE adm_condominio.Assembleia (
   fk_id_condominio INT NOT NULL REFERENCES adm_condominio.Condominio(id_condominio),
   id_assembleia SERIAL NOT NULL,
+  fk_id_corpo_admin INT NOT NULL REFERENCES adm_condominio.Corpo_Administrativo,
   data DATE NOT NULL,
-  -- separar em outra tabela?
-  id_sindico INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
-  id_subsindico INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
-  id_conselheiro_1 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
-  id_conselheiro_2 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
-  id_conselheiro_3 INT NOT NULL REFERENCES adm_condominio.Pessoa(id_pessoa),
-  -- tabela corpo administrativo
   assunto VARCHAR(100) NOT NULL,
   tipo tipo_assembleia NOT NULL,
   PRIMARY KEY (fk_id_condominio, id_assembleia)
