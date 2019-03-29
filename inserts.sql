@@ -1,5 +1,6 @@
+-- Entidades  fortes
 
--- endereco
+-- Endereco
 INSERT INTO adm_condominio.Endereco (id_endereco,estado,cidade,logradouro,numero,cep) VALUES (1,'Pará','Santarém','8995 Tellus Street',2945,17953552),(2,'Minas Gerais','Uberaba','997-4229 Non Avenue',11831,10506822),(3,'Minas Gerais','Contagem','139-454 Eu, Ave',11350,74268026),(4,'Pernambuco','Jaboatão dos Guararapes','5320 In St.',6124,53111915),(5,'Minas Gerais','Betim','Ap #873-4938 Elit, St.',4021,23868869),(6,'Rio de Janeiro','São Gonçalo','8768 Tincidunt, Avenue',11528,94822836),(7,'São Paulo','Piracicaba','Ap #256-4320 Nulla Avenue',3922,81303296),(8,'Rio de Janeiro','Petrópolis','6482 Justo Ave',3640,46521688),(9,'Paraná','Cascavel','1203 Vel, St.',1106,43722859),(10,'Pernambuco','Olinda','P.O. Box 690, 9708 Iaculis Av.',15354,55304593);
 INSERT INTO adm_condominio.Endereco (id_endereco,estado,cidade,logradouro,numero,cep) VALUES (11,'Rio de Janeiro','Belford Roxo','Ap #259-8644 Ac Road',10134,59047084),(12,'São Paulo','Jundiaí','610-108 Diam. Avenue',565,96523931),(13,'São Paulo','Osasco','P.O. Box 175, 7581 Non Rd.',11084,26504560),(14,'Ceará','Maracanaú','P.O. Box 101, 1340 Nunc Rd.',4929,9556183),(15,'Pernambuco','Paulista','P.O. Box 542, 9468 Nunc Ave',15677,17479641),(16,'Pará','Santarém','P.O. Box 325, 9913 Duis St.',12568,29408094),(17,'Bahia','Lauro de Freitas','P.O. Box 483, 815 Auctor, Av.',3031,89037917),(18,'Maranhão','Açailândia','9750 Suspendisse Rd.',9138,11573043),(19,'Ceará','Sobral','Ap #847-9424 Augue Rd.',1684,61292469),(20,'Paraná','Foz do Iguaçu','479-9247 Eget, Road',8087,19955876);
 INSERT INTO adm_condominio.Endereco (id_endereco,estado,cidade,logradouro,numero,cep) VALUES (21,'São Paulo','Jundiaí','Ap #692-8074 Non Rd.',3889,19444838),(22,'Santa Catarina','Joinville','1625 Lectus Avenue',1169,89583505),(23,'São Paulo','Mogi das Cruzes','804-9380 Volutpat. Ave',789,49958730),(24,'Goiás','Valparaíso de Goiás','Ap #666-2083 Mi Avenue',8261,9579465),(25,'Minas Gerais','Juiz de Fora','129-4718 Lacinia. Ave',10194,1089000),(26,'Maranhão','Balsas','P.O. Box 325, 6584 Facilisi. Ave',4577,1041432),(27,'São Paulo','Osasco','2614 Blandit. St.',6087,3962129),(28,'Rio Grande do Sul','Caxias do Sul','904-3200 Donec St.',4518,93805871),(29,'São Paulo','Piracicaba','P.O. Box 229, 7319 Nam Rd.',12489,42960934),(30,'Ceará','Caucaia','536-9836 Augue Rd.',2432,81859573);
@@ -11,17 +12,17 @@ INSERT INTO adm_condominio.Endereco (id_endereco,estado,cidade,logradouro,numero
 INSERT INTO adm_condominio.Endereco (id_endereco,estado,cidade,logradouro,numero,cep) VALUES (81,'São Paulo','Osasco','Ap #618-5971 Nec Ave',14057,10131318),(82,'Rio Grande do Sul','Canoas','P.O. Box 481, 8593 Nec Avenue',663,28286903),(83,'Ceará','Crato','3736 Curabitur Av.',5988,91204291),(84,'Minas Gerais','Uberaba','7631 Purus St.',12750,61841408),(85,'São Paulo','Mogi das Cruzes','304-6401 Aliquet, Rd.',10977,1539898),(86,'Paraná','Londrina','875-7255 Quam Rd.',11926,66753426),(87,'Bahia','Juazeiro','P.O. Box 723, 3550 Donec Street',1958,84945991),(88,'Goiás','Rio Verde','P.O. Box 253, 663 Nunc St.',10462,91642691),(89,'São Paulo','Jundiaí','215-3499 Velit Rd.',12653,22646052),(90,'Rio Grande do Sul','Porto Alegre','Ap #920-5934 Ac Av.',4548,26393323);
 INSERT INTO adm_condominio.Endereco (id_endereco,estado,cidade,logradouro,numero,cep) VALUES (91,'Rio de Janeiro','Nova Iguaçu','Ap #280-6183 Blandit Rd.',3143,182990),(92,'Rio de Janeiro','Rio de Janeiro','2796 Aliquet, Ave',6555,71980685),(93,'Minas Gerais','Betim','345-3622 Neque St.',4542,78419681),(94,'São Paulo','Ribeirão Preto','P.O. Box 275, 8299 Sit Street',5372,5538396),(95,'São Paulo','Ribeirão Preto','P.O. Box 286, 7624 Vestibulum Rd.',15661,88171313),(96,'São Paulo','Jundiaí','P.O. Box 512, 4949 Integer Road',2714,58953939),(97,'Paraná','Colombo','955-8570 Nulla Av.',11895,77906070),(98,'São Paulo','Piracicaba','6875 Pede, Rd.',1826,1900145),(99,'Santa Catarina','Joinville','P.O. Box 467, 3779 Dolor Av.',11474,48404438),(100,'Ceará','Caucaia','P.O. Box 911, 4663 Proin Rd.',4704,93342836);
 
--- administradora
+-- Administradora
 --1 a 10 enderecos
 INSERT INTO adm_condominio.Administradora (id_administradora,cnpj,nome_administradora,fk_id_endereco_matriz) VALUES (1,'20667084399610','Non Limited',11),(2,'74952442320063','Eros Limited',12),(3,'52115240031853','Egestas A PC',13),(4,'17635654243640','Lectus Ante Ltd',14),(5,'12921866024844','Amet Ante Vivamus Associates',15);
 INSERT INTO adm_condominio.Administradora (id_administradora,cnpj,nome_administradora,fk_id_endereco_matriz) VALUES (6,'84838220942765','Diam Foundation',16),(7,'22368038301356','Fringilla Donec Feugiat Foundation',17),(8,'28494632132351','Pede Sagittis Augue Consulting',18),(9,'41893396712839','Et LLP',19),(10,'48129985127598','Eros Nam Limited',20);
 
---Filial
+-- Filial
 --11 a 30 enderecos
 INSERT INTO adm_condominio.Filial (nome_filial,estado,fk_id_endereco,fk_id_administradora,id_filial) VALUES ('accumsan','MG',11,3,1),('Proin','PR',12,6,2),('tellus. Suspendisse sed','SP',13,7,3),('elit erat vitae','SP',14,10,4),('nec tellus. Nunc','SP',15,6,5),('ac sem','RS',16,8,6),('euismod urna. Nullam','RJ',17,5,7),('eleifend egestas.','MA',18,5,8),('blandit enim consequat','SP',19,1,9),('sed','MA',20,9,10);
 INSERT INTO adm_condominio.Filial (nome_filial,estado,fk_id_endereco,fk_id_administradora,id_filial) VALUES ('arcu.','BA',21,8,11),('magna,','PB',22,10,12),('vitae','SP',23,5,13),('ligula.','CE',24,1,14),('Maecenas iaculis','GO',25,6,15),('Fusce','PA',26,2,16),('dui','PA',27,3,17),('auctor odio','RJ',28,8,18),('at risus.','SC',29,1,19),('pede. Nunc','CE',30,5,20);
 
---Condominio
+-- Condominio
 --31 a 100 endereco
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('e',31,1),('e',32,2),('a',33,3),('e',34,4),('e',35,5),('e',36,6),('a',37,7),('a',38,8),('a',39,9),('a',40,10);
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('a',41,11),('e',42,12),('a',43,13),('e',44,14),('e',45,15),('a',46,16),('a',47,17),('e',48,18),('e',49,19),('a',50,20);
@@ -32,8 +33,7 @@ INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condomi
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('a',91,61),('e',92,62),('a',93,63),('e',94,64),('e',95,65),('a',96,66),('a',97,67),('a',98,68),('e',99,69),('e',100,70);
 
 
--- pessoa
-
+-- Pessoa
 INSERT INTO adm_condominio.Pessoa (id_pessoa,cpf,nome,data_nascimento,sexo) VALUES (1,'29087227196','Stewart Hodge','03/01/76','m'),(2,'56930773365','Kaseem Holt','10/03/94','m'),(3,'46431104699','Randall Wall','20/07/80','m'),(4,'84858575304','Derek Dudley','27/01/69','m'),(5,'90962068401','Keefe Owens','03/02/66','f'),(6,'85895307762','Vincent Johnson','12/12/79','m'),(7,'98588357921','Rahim Mcfarland','02/09/52','m'),(8,'96741457232','Gary Mercado','09/12/00','f'),(9,'82080086469','Perry Mccarthy','24/04/56','m'),(10,'41839544577','Kasimir Kirkland','16/09/84','m');
 INSERT INTO adm_condominio.Pessoa (id_pessoa,cpf,nome,data_nascimento,sexo) VALUES (11,'67936137001','Damian Horn','02/05/00','m'),(12,'55784322340','Randall Good','24/01/67','f'),(13,'24006703682','Arthur Hull','30/09/82','m'),(14,'88701722500','Ian Stuart','27/07/67','m'),(15,'64208881435','Rogan Silva','20/04/50','f'),(16,'73644009758','Lucius Deleon','16/07/67','f'),(17,'78947150041','Ivor Hickman','05/12/66','m'),(18,'71225721603','Kennedy Mayo','16/10/77','m'),(19,'48903635963','Colorado Wood','17/07/50','f'),(20,'73121339003','Cooper Ortega','29/04/79','f');
 INSERT INTO adm_condominio.Pessoa (id_pessoa,cpf,nome,data_nascimento,sexo) VALUES (21,'41827238309','Yardley Hines','18/01/74','f'),(22,'12566026700','Nolan Glenn','09/10/58','m'),(23,'61831399234','Wang Dixon','20/03/93','m'),(24,'65683405222','Wesley Pate','27/09/98','f'),(25,'45105040259','Driscoll Barr','28/09/58','f'),(26,'74355973978','Phillip Mckinney','10/09/52','m'),(27,'55392611026','Rafael Harrison','20/08/85','m'),(28,'32609930420','Graham Weaver','03/08/59','m'),(29,'38537330711','Thor Kline','25/02/60','f'),(30,'63189034699','Forrest Gentry','24/05/87','f');
@@ -59,15 +59,14 @@ INSERT INTO adm_condominio.Veiculo (placa,cidade,estado,marca,modelo,cor,id_veic
 INSERT INTO adm_condominio.Entrada_Saida (data_hora,acao,tecnologia,id_es) VALUES ('2018-05-11 22:50:43','s','Apple Systems',1),('2019-05-18 22:14:29','s','Finale',2),('2018-04-15 21:29:53','e','Borland',3),('2019-07-27 23:49:11','s','Macromedia',4),('2020-03-24 04:26:45','s','Chami',5),('2018-07-18 20:22:55','e','Lycos',6),('2018-04-16 08:28:40','e','Finale',7),('2018-09-27 09:19:40','s','Chami',8),('2019-08-02 12:22:30','e','Macromedia',9),('2019-11-10 20:08:41','e','Microsoft',10);
 INSERT INTO adm_condominio.Entrada_Saida (data_hora,acao,tecnologia,id_es) VALUES ('2019-08-24 05:59:54','e','Sibelius',11),('2018-07-23 03:14:01','s','Altavista',12),('2018-07-25 06:39:54','e','Apple Systems',13),('2019-12-14 23:27:58','e','Finale',14),('2018-03-01 00:57:09','s','Chami',15),('2018-11-17 02:13:02','e','Microsoft',16),('2018-07-27 02:01:25','e','Microsoft',17),('2020-02-24 18:51:19','s','Finale',18),('2018-07-04 19:18:08','e','Adobe',19),('2019-10-21 23:15:37','s','Borland',20);
 
--- edificio
-
+-- Edificio
 INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_id_condominio,id_edificio) VALUES ('Nam Nulla LLC','Aliquam',15,4,43,1),('Nunc Ltd','sit',14,7,21,2),('Mattis Institute','luctus',15,7,65,3),('Gravida Sagittis PC','ac',14,6,66,4),('Ante Vivamus Non Company','Nunc',15,1,60,5),('Vivamus Non Institute','sem',4,7,4,6),('Lorem Vitae Odio Foundation','aliquam',6,6,54,7),('Duis Institute','Cras',13,6,52,8),('Nec Cursus Inc.','parturient',3,1,70,9),('Egestas Company','odio',13,9,69,10);
 INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_id_condominio,id_edificio) VALUES ('Dolor Fusce Mi Corporation','parturient',10,3,66,11),('Amet Faucibus Industries','facilisis',14,5,7,12),('Aliquet Limited','massa.',7,7,34,13),('Nunc Corporation','Fusce',8,9,27,14),('Vulputate Mauris Foundation','amet',9,3,4,15),('Phasellus Consulting','fermentum',11,4,63,16),('Ac Mi Eleifend LLC','et,',13,6,11,17),('Rutrum Limited','Morbi',10,3,45,18),('Consequat Foundation','non',13,4,69,19),('Et Malesuada Fames PC','interdum',10,4,33,20);
 INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_id_condominio,id_edificio) VALUES ('Consectetuer Adipiscing Elit Institute','non',5,7,58,21),('Fermentum Metus Incorporated','placerat,',4,9,50,22),('Nam Company','hendrerit',14,5,26,23),('In Scelerisque Limited','ipsum',14,1,1,24),('Scelerisque Inc.','at,',5,6,43,25),('Malesuada Foundation','elementum,',3,7,9,26),('Mauris Vestibulum Institute','at',6,1,52,27),('Diam Dictum Sapien LLP','quam',12,4,47,28),('Sed Orci Industries','erat',11,6,52,29),('Suspendisse Consulting','nunc',6,9,27,30);
 INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_id_condominio,id_edificio) VALUES ('Tellus Faucibus Leo Incorporated','malesuada',8,9,65,31),('Tempus Non Company','et',8,4,14,32),('Ligula Consectetuer Rhoncus Associates','ante',7,2,43,33),('Urna Nullam Lobortis LLC','enim,',15,1,23,34),('Sociis Corp.','mi',9,6,29,35),('Libero Proin Sed Foundation','mauris',14,7,27,36),('In Corporation','neque.',11,4,42,37),('Dolor Dolor Inc.','Quisque',14,2,19,38),('Ipsum Phasellus Incorporated','nulla.',9,5,60,39),('Ac Industries','consequat',15,5,23,40);
 INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_id_condominio,id_edificio) VALUES ('Nisi Aenean Foundation','lacus',7,9,20,41),('Nisi Dictum Incorporated','dolor.',3,4,49,42),('Lorem Ipsum Dolor Associates','tellus.',6,5,39,43),('Ut Ipsum Ac Institute','non,',15,4,41,44),('Curabitur Egestas Nunc Limited','ultricies',6,7,28,45),('Mauris Incorporated','Nulla',12,1,6,46),('Non Ltd','risus',12,8,34,47),('Pede Foundation','enim.',11,2,20,48),('Sit Amet Risus Foundation','tristique',10,7,35,49),('Purus Nullam Consulting','nibh',14,8,46,50);
 
---Moradia
+-- Moradia
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('c',1),('a',2),('c',3),('c',4),('a',5),('c',6),('a',7),('c',8),('a',9),('a',10);
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('a',11),('c',12),('a',13),('a',14),('c',15),('c',16),('a',17),('c',18),('a',19),('c',20);
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('c',21),('a',22),('a',23),('a',24),('a',25),('a',26),('a',27),('c',28),('a',29),('a',30);
@@ -78,8 +77,7 @@ INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('a',61),('a
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('a',71),('a',72),('a',73),('a',74),('c',75),('c',76),('a',77),('a',78),('c',79),('c',80);
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('a',81),('a',82),('c',83),('a',84),('a',85),('a',86),('a',87),('c',88),('c',89),('a',90);
 
--- login
-
+-- Login
 INSERT INTO adm_condominio.Login (id_usuario,usuario,senha) VALUES (1,'RLISE171','HGP84XWA2VH67G5'),(2,'BFRIG931','AXC89NAB3AG70U6'),(3,'ROUEQ485','ZVO92IXK7BB42T8'),(4,'OWDMA081','MTW42UGS2MJ35H7'),(5,'IPSEV185','ZQR45ISE6ZY53K8'),(6,'AHZJM770','FEV12GPG2GQ44A3'),(7,'WNYJE231','LJT46UNC3YC40A2'),(8,'VMYAR070','JVK39EMB6VE38O6'),(9,'LGXPY188','COK79OUI9GA81W0'),(10,'TIVKM106','EFQ69MNS5QK28H2');
 
 -- Documento
@@ -88,3 +86,50 @@ INSERT INTO adm_condominio.Documento (nome_documento,status_documento,data,camin
 INSERT INTO adm_condominio.Documento (nome_documento,status_documento,data,caminho_texto,id_moradia) VALUES ('Accounting','2','2010-09-18 17:50:55','SCS61HYB7HP5V78J9R3F',21),('Quality Assurance','1','2018-01-26 17:23:30','TLV20MRL6PA5D08M6C9O',22),('Quality Assurance','4','2018-02-17 14:11:14','OTP18VNB0LX5P95H7L4E',23),('Payroll','3','2012-10-17 18:23:26','EWG54VUH6IO5R25Z8S0Z',24),('Legal Department','2','2012-12-16 23:25:12','LUG50HGN6SB8S51D4C3W',25),('Media Relations','5','2010-01-06 04:46:27','IMT94KJB3PX7E38O3L2Q',26),('Finances','5','2016-02-29 11:29:19','IPD47CPK5XK8W02D0P5E',27),('Finances','5','2017-11-11 20:20:13','JPG43PWR1GI8M13U0Q2E',28),('Public Relations','5','2017-01-08 14:43:48','JZT18UCT8UG5L68M8J7B',29),('Quality Assurance','5','2015-07-03 11:03:13','ISF61KKS3RZ3F53T2L1K',30);
 INSERT INTO adm_condominio.Documento (nome_documento,status_documento,data,caminho_texto,id_moradia) VALUES ('Payroll','4','2015-03-05 23:17:54','HTX47HSD2ZX9U04T2H5T',31),('Advertising','2','2018-04-19 03:54:45','UXW72FGN2FR7B20R6A7N',32),('Finances','1','2012-03-14 17:53:18','SIA55RYK8WT6C61L2W8J',33),('Asset Management','3','2013-04-13 02:45:33','DJQ04RDY7KE6I07E6T3I',34),('Payroll','4','2015-01-19 18:42:48','XVV43BMR0PB0C90J9H5L',35),('Research and Development','5','2015-01-13 10:40:24','VJE45KSG9XE3P30E1U6K',36),('Public Relations','2','2014-06-04 13:53:35','YKO02JWF2CX4E81E4G7Y',37),('Payroll','4','2012-11-03 04:40:42','BNR64LUG9XO6B32C4L4Q',38),('Sales and Marketing','3','2011-02-21 02:52:59','AQR19HJY9MY3S99R1O0V',39),('Finances','1','2013-11-08 08:12:33','VXS07ZWG6IS6Q25S5Q6H',40);
 INSERT INTO adm_condominio.Documento (nome_documento,status_documento,data,caminho_texto,id_moradia) VALUES ('Customer Service','1','2011-11-27 16:03:16','VRM50TNS6EE9U86Z1N4H',41),('Customer Service','2','2014-09-09 08:02:07','WPQ30XAR1KC2F91R1F9S',42),('Legal Department','4','2012-05-31 17:30:17','CZW00XVF9IR7J25G0W3L',43),('Customer Service','3','2014-05-18 03:06:21','DCC93TVD3FG0N18M4H6B',44),('Finances','3','2011-04-15 09:58:28','SUY76FWF7OS5G90X5L6G',45),('Asset Management','1','2015-05-07 00:47:53','MHT00XUS1LI8D16K6T3Q',46),('Accounting','4','2015-01-24 17:32:03','BCE65KVZ3XI2Y98V4K3W',47),('Research and Development','1','2018-02-01 06:43:31','IME51USD3ZC7W10H4W2R',48),('Media Relations','3','2012-05-25 16:22:54','DJI65QKE6DK2W28G9B5T',49),('Finances','4','2016-06-08 14:39:54','GXN91YJO8WJ6D96T0D2J',50);
+
+-- Entidades fracas
+
+-- Espaco
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (19,1,'volutpat',19,0),(64,2,'mattis ornare,',105,0),(11,3,'augue.',186,0),(20,4,'ultrices a, auctor',110,1),(63,5,'Pellentesque',145,0),(55,6,'neque. Nullam ut nisi',73,0),(47,7,'tempor, est ac',43,0),(45,8,'dolor egestas',145,1),(5,9,'dictum sapien.',30,0),(46,10,'consectetuer rhoncus. Nullam',88,1);
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (62,11,'Mauris non dui nec',119,1),(7,12,'Etiam laoreet,',9,1),(62,13,'convallis in, cursus',105,1),(17,14,'quis,',145,1),(57,15,'mauris sapien, cursus in,',153,0),(59,16,'nec tellus. Nunc lectus',8,1),(24,17,'eleifend, nunc risus varius',15,1),(11,18,'id, erat. Etiam vestibulum',33,0),(48,19,'eleifend nec, malesuada ut,',41,1),(50,20,'In',148,1);
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (61,21,'diam. Sed diam lorem,',26,0),(47,22,'dictum eleifend, nunc risus',66,0),(6,23,'non',12,1),(45,24,'vestibulum',6,1),(41,25,'Pellentesque tincidunt',46,1),(52,26,'dictum ultricies ligula.',25,0),(60,27,'luctus',161,0),(66,28,'ornare egestas ligula. Nullam',95,0),(55,29,'senectus et netus et',115,0),(36,30,'dis',4,0);
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (24,31,'et, magna.',162,1),(53,32,'vestibulum lorem, sit',95,0),(40,33,'eu',120,1),(51,34,'malesuada',121,1),(8,35,'vulputate, risus',199,0),(62,36,'orci.',159,0),(45,37,'sed',183,1),(33,38,'risus. Nunc ac sem',88,0),(11,39,'blandit at, nisi.',200,1),(6,40,'ante blandit viverra. Donec',142,0);
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (26,41,'ut mi. Duis risus',49,1),(19,42,'lorem, luctus ut, pellentesque',175,0),(15,43,'vitae mauris sit',31,0),(57,44,'tellus lorem eu',24,1),(21,45,'libero lacus, varius et,',54,0),(37,46,'Suspendisse eleifend. Cras',81,1),(53,47,'mi tempor',179,0),(43,48,'eu, ligula. Aenean euismod',58,1),(9,49,'vitae',120,1),(43,50,'mauris, aliquam',34,1);
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (58,51,'Duis cursus, diam',90,1),(68,52,'posuere,',184,1),(26,53,'diam luctus lobortis.',17,0),(66,54,'nec enim. Nunc',105,1),(69,55,'accumsan convallis,',63,0),(42,56,'aliquet magna a neque.',178,1),(22,57,'Ut sagittis lobortis mauris.',138,0),(59,58,'Donec porttitor',14,1),(66,59,'mollis. Phasellus libero',92,0),(11,60,'id, blandit',26,0);
+INSERT INTO "Espaco" (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (69,61,'ac',131,0),(35,62,'sem egestas',160,1),(60,63,'lobortis augue scelerisque',14,1),(31,64,'metus urna convallis erat,',69,1),(40,65,'parturient montes, nascetur',12,1),(11,66,'Nullam feugiat placerat',172,0),(67,67,'porttitor scelerisque neque. Nullam',20,0),(1,68,'porta elit, a',138,1),(58,69,'tellus non magna. Nam',127,0),(8,70,'pede, ultrices a, auctor',123,1);
+
+-- Assembleia
+
+
+-- Apartamento
+
+
+-- Casa
+
+
+-- Relacionamentos
+
+-- Reserva
+
+-- Comparece
+
+-- Condominio_Filial
+
+-- Condominio_Moradia
+
+-- Moradia_Pessoa
+
+-- Moradia_Edificio
+
+-- Es_Pessoa
+
+-- Es_Veiculo
+
+-- Veiculo_Moradia
+
+-- Administradora_Documento
+
+-- Assembleia_Documento
+
+-- Condominio_Documento
+

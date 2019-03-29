@@ -93,10 +93,10 @@ CREATE TABLE adm_condominio.Documento (
 CREATE TABLE adm_condominio.Espaco (
   fk_id_condominio INT NOT NULL REFERENCES adm_condominio.Condominio(id_condominio),
   id_espaco SERIAL NOT NULL UNIQUE,
-  nome_espaco VARCHAR(30) NOT NULL,
+  nome_espaco VARCHAR(255) NOT NULL,
   capacidade INT NOT NULL,
   reservavel BOOLEAN NOT NULL,
-  CONSTRAINT restricao_capac CHECK (capacidade < 200),
+  CONSTRAINT restricao_capac CHECK (capacidade < 201),
   PRIMARY KEY (fk_id_condominio, id_espaco)
 );
 
