@@ -20,6 +20,7 @@ DROP TABLE adm_condominio.Moradia CASCADE;
 DROP TABLE adm_condominio.Edificio CASCADE;
 DROP TABLE adm_condominio.Entrada_Saida CASCADE;
 DROP TABLE adm_condominio.Veiculo CASCADE;
+DROP TABLE adm_condominio.Corpo_Administrativo CASCADE;
 DROP TABLE adm_condominio.Pessoa CASCADE;
 DROP TABLE adm_condominio.Condominio CASCADE;
 DROP TABLE adm_condominio.Filial CASCADE;
