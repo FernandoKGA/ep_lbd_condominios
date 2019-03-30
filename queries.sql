@@ -67,3 +67,29 @@ SELECT v.marca, COUNT(v.*) FROM adm_condominio.Veiculo AS v
 	GROUP BY v.marca
 	ORDER BY 2
 	LIMIT 3;
+
+    -- Listar documentos não válidos (ou seja, tudo menos aprovado) da Região Sudeste e as respectivas administradoras responsáveis.
+SELECT Administradora.id_administradora, 
+		CASE WHEN (
+					Documento.status_documento = 1 
+					THEN "Aprovado"
+				WHEN Documento.status_documento = 2
+					THEN "Recusado"
+				WHEN Documento.status_documento = 3
+					THEN "Em Aprovação"
+				WHEN Documento.status_documento = 4
+					THEN "Em Processamento"
+				WHEN Documento.status_documento = 5
+					THEN "Não Disponível"
+				END
+				) AS status_documento,
+				Documento.data AS data_criacao
+	FROM adm_condominio.Administradora AS Administradora 
+	JOIN adm_condominio.Adminstradora_Documento AS Administradora_Documento
+	  ON Administradora_Documento.fk_id_documento = Administradora.id_administradora
+	JOIN adm_condominio.Filial AS Filial 
+	  ON Filial.fk_id_administradora = Administradora.id_administradora
+	JOIN adm_condominio.Endereco AS Endereco
+	  ON Endereco.id_endereco = Filial.fk_id_endereco
+	WHERE NOT Documento.status_documento = 1
+		AND Filial.estado IN ('ES', 'MG',  'RJ', 'SP')
