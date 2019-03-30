@@ -11,7 +11,7 @@ CREATE TABLE adm_condominio.Endereco (
 );
 
 CREATE TABLE adm_condominio.Administradora (
-  id_administradora SERIAL NOT NULL,
+  	id_administradora SERIAL NOT NULL,
 	cnpj VARCHAR(14) NOT NULL,
 	nome_administradora VARCHAR(50) NOT NULL,
 	fk_id_endereco_matriz INT NOT NULL REFERENCES adm_condominio.Endereco(id_endereco),
@@ -152,8 +152,8 @@ CREATE TABLE adm_condominio.Comparece (
 );
 
 CREATE TABLE adm_condominio.Condominio_Filial (
-  fk_id_filial INT NOT NULL REFERENCES adm_condominio.Filial(id_filial),
-  fk_id_condominio INT NOT NULL REFERENCES adm_condominio.Condominio(id_condominio)
+  fk_id_condominio INT NOT NULL REFERENCES adm_condominio.Condominio(id_condominio),
+  fk_id_filial INT NOT NULL REFERENCES adm_condominio.Filial(id_filial)  
 );
 
 CREATE TABLE adm_condominio.Condominio_Moradia (
