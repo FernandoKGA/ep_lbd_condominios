@@ -189,7 +189,7 @@ CREATE TABLE adm_condominio.Veiculo_Moradia (
 -- relacoes de documento e outros
 
 CREATE TABLE adm_condominio.Administradora_Documento (
-  fk_cnpj INT NOT NULL REFERENCES adm_condominio.Administradora(id_administradora),
+  fk_id_administradora INT NOT NULL REFERENCES adm_condominio.Administradora(id_administradora),
   fk_id_documento INT NOT NULL REFERENCES adm_condominio.Documento(id_documento)  
 );
 

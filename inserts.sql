@@ -32,7 +32,6 @@ INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condomi
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('e',81,51),('a',82,52),('e',83,53),('a',84,54),('e',85,55),('e',86,56),('a',87,57),('e',88,58),('a',89,59),('e',90,60);
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('a',91,61),('e',92,62),('a',93,63),('e',94,64),('e',95,65),('a',96,66),('a',97,67),('a',98,68),('e',99,69),('e',100,70);
 
-
 -- Pessoa
 INSERT INTO adm_condominio.Pessoa (id_pessoa,cpf,nome,data_nascimento,sexo) VALUES (1,'29087227196','Stewart Hodge','03/01/76','m'),(2,'56930773365','Kaseem Holt','10/03/94','m'),(3,'46431104699','Randall Wall','20/07/80','m'),(4,'84858575304','Derek Dudley','27/01/69','m'),(5,'90962068401','Keefe Owens','03/02/66','f'),(6,'85895307762','Vincent Johnson','12/12/79','m'),(7,'98588357921','Rahim Mcfarland','02/09/52','m'),(8,'96741457232','Gary Mercado','09/12/00','f'),(9,'82080086469','Perry Mccarthy','24/04/56','m'),(10,'41839544577','Kasimir Kirkland','16/09/84','m');
 INSERT INTO adm_condominio.Pessoa (id_pessoa,cpf,nome,data_nascimento,sexo) VALUES (11,'67936137001','Damian Horn','02/05/00','m'),(12,'55784322340','Randall Good','24/01/67','f'),(13,'24006703682','Arthur Hull','30/09/82','m'),(14,'88701722500','Ian Stuart','27/07/67','m'),(15,'64208881435','Rogan Silva','20/04/50','f'),(16,'73644009758','Lucius Deleon','16/07/67','f'),(17,'78947150041','Ivor Hickman','05/12/66','m'),(18,'71225721603','Kennedy Mayo','16/10/77','m'),(19,'48903635963','Colorado Wood','17/07/50','f'),(20,'73121339003','Cooper Ortega','29/04/79','f');
@@ -56,7 +55,6 @@ INSERT INTO adm_condominio.Corpo_Administrativo (id_corpo,id_sindico,id_subsindi
 INSERT INTO adm_condominio.Corpo_Administrativo (id_corpo,id_sindico,id_subsindico,id_conselheiro1,id_conselheiro2,id_conselheiro3,data_eleicao) VALUES (71,3,19,22,39,44,'09-12-04'),(72,3,17,22,38,46,'15-05-08'),(73,4,13,23,35,48,'14-05-21'),(74,5,16,22,34,41,'07-03-10'),(75,9,15,23,37,42,'09-12-04'),(76,7,17,23,40,42,'07-12-29'),(77,1,14,26,40,50,'04-03-28'),(78,7,12,26,35,41,'15-07-11'),(79,10,11,29,32,49,'06-10-26'),(80,10,16,26,34,48,'12-11-09');
 INSERT INTO adm_condominio.Corpo_Administrativo (id_corpo,id_sindico,id_subsindico,id_conselheiro1,id_conselheiro2,id_conselheiro3,data_eleicao) VALUES (81,10,12,25,39,41,'17-04-01'),(82,3,20,21,37,48,'12-08-16'),(83,7,15,25,38,43,'17-07-24'),(84,5,19,25,33,43,'10-09-22'),(85,4,13,23,35,47,'09-09-16'),(86,7,14,26,37,49,'13-05-03'),(87,2,16,24,31,50,'16-07-09'),(88,9,19,24,37,46,'14-12-20'),(89,9,16,24,32,50,'12-08-30'),(90,4,16,29,39,43,'02-11-19');
 INSERT INTO adm_condominio.Corpo_Administrativo (id_corpo,id_sindico,id_subsindico,id_conselheiro1,id_conselheiro2,id_conselheiro3,data_eleicao) VALUES (91,6,15,25,37,43,'07-07-08'),(92,4,14,27,40,49,'03-07-03'),(93,7,12,21,39,45,'10-05-01'),(94,9,16,22,36,43,'07-03-16'),(95,10,13,30,37,41,'03-03-26'),(96,7,15,25,39,48,'06-09-07'),(97,2,17,22,31,41,'05-10-21'),(98,7,18,23,39,42,'04-10-08'),(99,1,15,30,38,45,'16-11-20'),(100,7,12,30,38,43,'04-01-09');
-
 
 --Veiculo
 INSERT INTO adm_condominio_Veiculo (placa,cidade,estado,marca,modelo,cor,id_veiculo) VALUES ('XSP8204','Parauapebas','PA','Kia Motors','five','blue',1),('QLQ2067','Niterói','RJ','Cadillac','six','red',2),('QXY1926','Jundiaí','SP','FAW','eight','silver',3),('LJX0088','Chapecó','SC','Suzuki','five','black',4),('XIS4997','São José','SC','Kenworth','four','black',5),('YYB5883','Jaboatão dos Guararapes','PE','Acura','six','black',6),('WJL2871','Abaetetuba','PA','Ferrari','two','silver',7),('LNB4619','Duque de Caxias','RJ','Audi','eight','black',8),('OES7902','Carapicuíba','SP','Dongfeng Motor','four','red',9),('QDO0708','Carapicuíba','SP','Audi','nine','red',10);
@@ -112,37 +110,80 @@ INSERT INTO adm_condominio.Espaco (fk_id_condominio,id_espaco,nome_espaco,capaci
 INSERT INTO adm_condominio.Espaco (fk_id_condominio,id_espaco,nome_espaco,capacidade,reservavel) VALUES (69,61,'ac',131,0),(35,62,'sem egestas',160,1),(60,63,'lobortis augue scelerisque',14,1),(31,64,'metus urna convallis erat,',69,1),(40,65,'parturient montes, nascetur',12,1),(11,66,'Nullam feugiat placerat',172,0),(67,67,'porttitor scelerisque neque. Nullam',20,0),(1,68,'porta elit, a',138,1),(58,69,'tellus non magna. Nam',127,0),(8,70,'pede, ultrices a, auctor',123,1);
 
 -- Assembleia
-
+INSERT INTO adm_condominio.Assembleia (fk_id_condominio,id_assembleia,data,fk_id_corpo_admin,assunto,tipo) VALUES (1,1,'13-08-03',12,'nonummy ac, feugiat non, lobortis quis, pede. Suspendisse','AGO'),(2,2,'08-05-01',18,'sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet','AGE'),(3,3,'09-06-04',17,'enim non nisi. Aenean','AGO'),(4,4,'08-05-04',18,'Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare,','AGE'),(5,5,'15-06-10',15,'et magnis dis parturient montes, nascetur ridiculus mus.','AGE'),(6,6,'12-02-28',5,'Duis ac arcu. Nunc mauris. Morbi','AGO'),(7,7,'08-06-28',14,'non leo. Vivamus nibh dolor,','AGE'),(8,8,'08-07-15',15,'magna, malesuada vel, convallis in, cursus et, eros.','AGO'),(9,9,'12-09-07',28,'dolor sit amet, consectetuer adipiscing elit. Curabitur sed tortor.','AGE'),(10,10,'14-10-15',29,'Integer sem','AGO');
+INSERT INTO adm_condominio.Assembleia (fk_id_condominio,id_assembleia,data,fk_id_corpo_admin,assunto,tipo) VALUES (11,11,'13-04-11',9,'ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede','AGE'),(12,12,'15-03-20',22,'tellus faucibus leo, in','AGE'),(13,13,'15-01-01',23,'lectus. Cum sociis natoque penatibus','AGO'),(14,14,'15-04-23',18,'sem ut','AGO'),(15,15,'15-10-28',2,'odio. Aliquam','AGO'),(16,16,'17-12-21',21,'Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor,','AGO'),(17,17,'09-10-27',19,'sollicitudin','AGO'),(18,18,'13-03-27',10,'auctor vitae, aliquet nec, imperdiet nec, leo. Morbi','AGE'),(19,19,'11-11-29',20,'dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante','AGO'),(20,20,'10-02-20',22,'elementum, dui quis accumsan convallis, ante lectus','AGO');
+INSERT INTO adm_condominio.Assembleia (fk_id_condominio,id_assembleia,data,fk_id_corpo_admin,assunto,tipo) VALUES (21,21,'12-02-14',3,'nulla vulputate dui,','AGE'),(22,22,'09-06-12',3,'et, magna.','AGO'),(23,23,'16-09-09',27,'nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam','AGO'),(24,24,'16-08-30',24,'felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum.','AGE'),(25,25,'10-09-18',11,'Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie','AGE'),(26,26,'11-04-28',22,'Nulla semper tellus id nunc interdum feugiat.','AGE'),(27,27,'11-01-24',4,'convallis ligula.','AGE'),(28,28,'16-08-04',8,'quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper','AGO'),(29,29,'15-07-19',3,'nec enim. Nunc ut erat. Sed nunc est, mollis non,','AGE'),(30,30,'08-11-05',8,'Integer sem elit, pharetra ut, pharetra','AGO');
+INSERT INTO adm_condominio.Assembleia (fk_id_condominio,id_assembleia,data,fk_id_corpo_admin,assunto,tipo) VALUES (31,31,'13-10-18',1,'nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus.','AGO'),(32,32,'09-12-22',23,'amet, dapibus id, blandit at, nisi. Cum sociis','AGO'),(33,33,'14-03-02',18,'Aenean sed pede nec','AGE'),(34,34,'11-08-24',30,'ipsum. Suspendisse sagittis. Nullam','AGO'),(35,35,'13-09-26',26,'In scelerisque scelerisque dui. Suspendisse ac metus vitae','AGE'),(36,36,'17-06-23',21,'libero et tristique pellentesque, tellus sem mollis dui, in','AGE'),(37,37,'09-06-19',1,'erat. Sed nunc est, mollis non, cursus non, egestas','AGE'),(38,38,'11-12-20',24,'eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula','AGO'),(39,39,'10-11-21',27,'semper','AGO'),(40,40,'08-04-29',15,'viverra. Maecenas iaculis','AGE');
 
 -- Apartamento
-
+-- 2 5 7 9 10 11 13 14 17 19 22 23 24 25 26 27 29 30 35 36
+INSERT INTO adm_condominio.Apartamento (fk_id_moradia,andar,final,numero_ap) VALUES (2,4,4,64),(5,7,1,177),(7,16,5,116),(9,20,10,65),(10,3,2,89),(11,2,2,138),(13,20,2,27),(14,2,10,198),(17,7,2,134),(19,14,10,9);
+INSERT INTO adm_condominio.Apartamento (fk_id_moradia,andar,final,numero_ap) VALUES (22,8,6,64),(23,9,7,38),(24,17,9,96),(25,13,7,115),(26,6,7,17),(27,15,6,71),(29,17,2,177),(30,4,2,23),(35,5,9,64),(36,8,3,194);
 
 -- Casa
-
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (61,43),(62,78),(63,20),(64,65),(65,2),(66,51),(67,15),(68,51),(69,17),(70,54);
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (71,30),(72,53),(73,2),(74,99),(75,17),(76,81),(77,53),(78,54),(79,93),(80,9);
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (81,79),(82,42),(83,47),(84,44),(85,53),(86,97),(87,69),(88,37),(89,64),(90,6);
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (91,29),(92,46),(93,39),(94,22),(95,83),(96,18),(97,48),(98,84),(99,93),(100,11);
 
 -- Relacionamentos
 
 -- Reserva
+INSERT INTO adm_condominio.Reserva (fk_id_moradia,fk_id_espaco,hora_inicio,hora_final,data) VALUES (61,3,'67:90:47','95:27:78','22/09/19'),(62,19,'41:24:90','62:25:50','16/02/18'),(63,62,'98:57:81','12:91:40','21/07/18'),(64,96,'49:93:83','38:05:26','11/10/19'),(65,2,'22:28:21','42:34:21','04/02/19'),(66,68,'46:25:48','10:99:66','11/02/19'),(67,39,'21:01:26','62:68:62','18/11/18'),(68,36,'24:72:84','06:34:27','06/02/19'),(69,56,'27:75:70','10:44:43','22/05/18'),(70,45,'80:42:53','35:97:89','06/04/18');
+INSERT INTO adm_condominio.Reserva (fk_id_moradia,fk_id_espaco,hora_inicio,hora_final,data) VALUES (71,4,'23:46:76','79:84:15','25/09/18'),(72,89,'35:65:96','55:72:51','30/01/20'),(73,20,'04:08:67','70:30:37','25/11/18'),(74,91,'77:28:32','77:16:96','04/02/18'),(75,43,'03:01:28','17:36:23','17/03/18'),(76,72,'13:49:75','83:49:04','15/02/20'),(77,23,'72:11:23','91:35:27','23/03/18'),(78,94,'59:31:04','29:34:83','08/12/18'),(79,83,'09:84:38','09:46:48','14/04/19'),(80,90,'24:00:04','41:97:98','20/01/19');
 
 -- Comparece
+INSERT INTO adm_condominio.Comparece (fk_id_pessoa,fk_id_assembleia,fk_id_condominio) VALUES (1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5),(6,6,6),(7,7,7),(8,8,8),(9,9,9),(10,10,10);
+INSERT INTO adm_condominio.Comparece (fk_id_pessoa,fk_id_assembleia,fk_id_condominio) VALUES (11,11,11),(12,12,12),(13,13,13),(14,14,14),(15,15,15),(16,16,16),(17,17,17),(18,18,18),(19,19,19),(20,20,20);
+INSERT INTO adm_condominio.Comparece (fk_id_pessoa,fk_id_assembleia,fk_id_condominio) VALUES (21,21,21),(22,22,22),(23,23,23),(24,24,24),(25,25,25),(26,26,26),(27,27,27),(28,28,28),(29,29,29),(30,30,30);
+INSERT INTO adm_condominio.Comparece (fk_id_pessoa,fk_id_assembleia,fk_id_condominio) VALUES (31,31,31),(32,32,32),(33,33,33),(34,34,34),(35,35,35),(36,36,36),(37,37,37),(38,38,38),(39,39,39),(40,40,40);
+INSERT INTO adm_condominio.Comparece (fk_id_pessoa,fk_id_assembleia,fk_id_condominio) VALUES (41,41,41),(42,42,42),(43,43,43),(44,44,44),(45,45,45),(46,46,46),(47,47,47),(48,48,48),(49,49,49),(50,50,50);
 
 -- Condominio_Filial
+INSERT INTO adm_condominio.Condominio_Filial (fk_id_filial,fk_id_condominio) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO adm_condominio.Condominio_Filial (fk_id_filial,fk_id_condominio) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
 
 -- Condominio_Moradia
+INSERT INTO adm_condominio.Condominio_Moradia (fk_id_condominio,fk_id_moradia) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO adm_condominio.Condominio_Moradia (fk_id_condominio,fk_id_moradia) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
+INSERT INTO adm_condominio.Condominio_Moradia (fk_id_condominio,fk_id_moradia) VALUES (21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30);
+INSERT INTO adm_condominio.Condominio_Moradia (fk_id_condominio,fk_id_moradia) VALUES (31,31),(32,32),(33,33),(34,34),(35,35),(36,36),(37,37),(38,38),(39,39),(40,40);
 
 -- Moradia_Pessoa
+INSERT INTO adm_condominio.Moradia_Pessoa (fk_id_pessoa,fk_id_moradia) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO adm_condominio.Moradia_Pessoa (fk_id_pessoa,fk_id_moradia) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
+INSERT INTO adm_condominio.Moradia_Pessoa (fk_id_pessoa,fk_id_moradia) VALUES (21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30);
+INSERT INTO adm_condominio.Moradia_Pessoa (fk_id_pessoa,fk_id_moradia) VALUES (31,31),(32,32),(33,33),(34,34),(35,35),(36,36),(37,37),(38,38),(39,39),(40,40);
 
 -- Moradia_Edificio
+-- 2 5 7 9 10 11 13 14 17 19 22 23 24 25 26 27 29 30 35 36
+INSERT INTO adm_condominio.Moradia_Edificio (fk_id_edificio,fk_id_moradia) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO adm_condominio.Moradia_Edificio (fk_id_edificio,fk_id_moradia) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
+INSERT INTO adm_condominio.Moradia_Edificio (fk_id_edificio,fk_id_moradia) VALUES (21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30);
+INSERT INTO adm_condominio.Moradia_Edificio (fk_id_edificio,fk_id_moradia) VALUES (31,31),(32,32),(33,33),(34,34),(35,35),(36,36),(37,37),(38,38),(39,39),(40,40);
 
 -- Es_Pessoa
+-- 11 a 20
+INSERT INTO adm_condominio.Es_Pessoa (fk_id_es,fk_id_pessoa) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
 
 -- Es_Veiculo
+-- 1 a 10
+INSERT INTO adm_condominio.Es_Veiculo (fk_id_es,fk_id_veiculo) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
 
 -- Veiculo_Moradia
+INSERT INTO adm_condominio.Veiculo_Moradia (fk_id_veiculo,fk_id_moradia) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO adm_condominio.Veiculo_Moradia (fk_id_veiculo,fk_id_moradia) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
 
 -- Administradora_Documento
+-- 41 a 50
+INSERT INTO adm_condominio.Administradora_Documento (fk_id_administradora,fk_id_documento) VALUES (1,41),(2,42),(3,43),(4,44),(5,45),(6,46),(7,47),(8,48),(9,49),(10,50);
 
 -- Assembleia_Documento
+-- 21 a 40
+INSERT INTO adm_condominio.Assembleia_Documento (fk_id_assembleia,fk_id_condominio,fk_id_documento) VALUES (1,1,21),(2,2,22),(3,3,23),(4,4,24),(5,5,25),(6,6,26),(7,7,27),(8,8,28),(9,9,29),(10,10,30);
+INSERT INTO adm_condominio.Assembleia_Documento (fk_id_assembleia,fk_id_condominio,fk_id_documento) VALUES (11,11,31),(12,12,32),(13,13,33),(14,14,34),(15,15,35),(16,16,36),(17,17,37),(18,18,38),(19,19,39),(20,20,40);
 
 -- Condominio_Documento
-
+-- 1 a 20
+INSERT INTO adm_condominio.Condominio_Documento (fk_id_condominio,fk_id_documento) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO adm_condominio.Condominio_Documento (fk_id_condominio,fk_id_documento) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
