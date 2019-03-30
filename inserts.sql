@@ -19,12 +19,12 @@ INSERT INTO adm_condominio.Administradora (id_administradora,cnpj,nome_administr
 
 -- Filial
 --11 a 30 enderecos
-INSERT INTO adm_condominio.Filial (nome_filial,regiao,fk_id_endereco,fk_id_administradora,id_filial) VALUES ('accumsan','MG',11,3,TRUE),('Proin','PR',12,6,2),('tellus. Suspendisse sed','SP',13,7,3),('elit erat vitae','SP',14,10,4),('nec tellus. Nunc','SP',15,6,5),('ac sem','RS',16,8,6),('euismod urna. Nullam','RJ',17,5,7),('eleifend egestas.','MA',18,5,8),('blandit enim consequat','SP',19,1,9),('sed','MA',20,9,10);
+INSERT INTO adm_condominio.Filial (nome_filial,regiao,fk_id_endereco,fk_id_administradora,id_filial) VALUES ('accumsan','MG',11,3,1),('Proin','PR',12,6,2),('tellus. Suspendisse sed','SP',13,7,3),('elit erat vitae','SP',14,10,4),('nec tellus. Nunc','SP',15,6,5),('ac sem','RS',16,8,6),('euismod urna. Nullam','RJ',17,5,7),('eleifend egestas.','MA',18,5,8),('blandit enim consequat','SP',19,1,9),('sed','MA',20,9,10);
 INSERT INTO adm_condominio.Filial (nome_filial,regiao,fk_id_endereco,fk_id_administradora,id_filial) VALUES ('arcu.','BA',21,8,11),('magna,','PB',22,10,12),('vitae','SP',23,5,13),('ligula.','CE',24,1,14),('Maecenas iaculis','GO',25,6,15),('Fusce','PA',26,2,16),('dui','PA',27,3,17),('auctor odio','RJ',28,8,18),('at risus.','SC',29,1,19),('pede. Nunc','CE',30,5,20);
 
 -- Condominio
 --31 a 100 endereco
-INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('e',31,TRUE),('e',32,2),('a',33,3),('e',34,4),('e',35,5),('e',36,6),('a',37,7),('a',38,8),('a',39,9),('a',40,10);
+INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('e',31,1),('e',32,2),('a',33,3),('e',34,4),('e',35,5),('e',36,6),('a',37,7),('a',38,8),('a',39,9),('a',40,10);
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('a',41,11),('e',42,12),('a',43,13),('e',44,14),('e',45,15),('a',46,16),('a',47,17),('e',48,18),('e',49,19),('a',50,20);
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('a',51,21),('a',52,22),('a',53,23),('e',54,24),('e',55,25),('e',56,26),('a',57,27),('e',58,28),('e',59,29),('a',60,30);
 INSERT INTO adm_condominio.Condominio (tipo_condominio,fk_id_endereco,id_condominio) VALUES ('e',61,31),('e',62,32),('e',63,33),('a',64,34),('a',65,35),('a',66,36),('a',67,37),('a',68,38),('a',69,39),('e',70,40);
@@ -78,7 +78,7 @@ INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_i
 INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_id_condominio,id_edificio) VALUES ('Nisi Aenean Foundation','lacus',7,9,20,41),('Nisi Dictum Incorporated','dolor.',3,4,49,42),('Lorem Ipsum Dolor Associates','tellus.',6,5,39,43),('Ut Ipsum Ac Institute','non,',15,4,41,44),('Curabitur Egestas Nunc Limited','ultricies',6,7,28,45),('Mauris Incorporated','Nulla',12,1,6,46),('Non Ltd','risus',12,8,34,47),('Pede Foundation','enim.',11,2,20,48),('Sit Amet Risus Foundation','tristique',10,7,35,49),('Purus Nullam Consulting','nibh',14,8,46,50);
 
 -- Moradia
-INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('c',TRUE),('a',2),('c',3),('c',4),('a',5),('c',6),('a',7),('c',8),('a',9),('a',10);
+INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('c',1),('a',2),('c',3),('c',4),('a',5),('c',6),('a',7),('c',8),('a',9),('a',10);
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('a',11),('c',12),('a',13),('a',14),('c',15),('c',16),('a',17),('c',18),('a',19),('c',20);
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('c',21),('a',22),('a',23),('a',24),('a',25),('a',26),('a',27),('c',28),('a',29),('a',30);
 INSERT INTO adm_condominio.Moradia (tipo_moradia,id_moradia) VALUES ('c',31),('c',32),('c',33),('c',34),('a',35),('a',36),('a',37),('c',38),('c',39),('a',40);
