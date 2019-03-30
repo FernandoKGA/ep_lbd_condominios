@@ -21,7 +21,7 @@ CREATE TABLE adm_condominio.Administradora (
 CREATE TABLE adm_condominio.Filial (
   id_filial SERIAL NOT NULL PRIMARY KEY,
   nome_filial VARCHAR(50) NOT NULL,
-  regiao VARCHAR(20) NOT NULL,
+  regiao VARCHAR(50) NOT NULL,
   fk_id_endereco INT NOT NULL REFERENCES adm_condominio.Endereco(id_endereco),
   fk_id_administradora INT NOT NULL REFERENCES adm_condominio.Administradora(id_administradora)
 );
