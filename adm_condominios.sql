@@ -56,9 +56,9 @@ CREATE TABLE adm_condominio.Veiculo (
   placa CHAR(7) NOT NULL,
   cidade VARCHAR(30) NOT NULL,
   estado VARCHAR(19) NOT NULL,
-  marca VARCHAR(20) NOT NULL,
-  modelo VARCHAR(20) NOT NULL,
-  cor VARCHAR(20) NOT NULL
+  marca VARCHAR(50) NOT NULL,
+  modelo VARCHAR(50) NOT NULL,
+  cor VARCHAR(50) NOT NULL
 );
 
 -- "E" para entrada; "S" para saída
