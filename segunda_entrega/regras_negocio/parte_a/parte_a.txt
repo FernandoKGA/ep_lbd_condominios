@@ -1,0 +1,215 @@
+----------------------- PARTE A ---------------------------------------------------------
+
+-- Criacao da funcao de assercao de eleicao_corpo_administrativo
+
+SET SCHEMA 'adm_condominio';
+
+CREATE OR REPLACE FUNCTION eleicao_corpo_adm() RETURNS TRIGGER AS $$
+BEGIN
+	DROP TABLE IF EXISTS elec_dois_ult_anos;
+	CREATE TEMP TABLE elec_dois_ult_anos 
+	(
+		id_corpo INT,
+		id_sindico INT,
+		id_subsindico INT,
+		id_conselheiro_1 INT,
+		id_conselheiro_2 INT,
+		id_conselheiro_3 INT
+	);
+	
+	INSERT INTO elec_dois_ult_anos
+	SELECT id_corpo, id_sindico, id_subsindico, id_conselheiro_1, id_conselheiro_2, id_conselheiro_3
+    FROM adm_condominio.corpo_administrativo adm_ca
+    WHERE DATE_PART('year', adm_ca.data_eleicao) = DATE_PART('year', (NEW.data_eleicao - interval '1 year'))
+    UNION	
+    SELECT id_corpo, id_sindico, id_subsindico, id_conselheiro_1, id_conselheiro_2, id_conselheiro_3
+    FROM adm_condominio.corpo_administrativo adm_ca
+    WHERE DATE_PART('year', adm_ca.data_eleicao) = DATE_PART('year', (NEW.data_eleicao - interval '2 years'));
+
+	
+	-- verificar ano de eleicao
+	IF (DATE_PART('year', NEW.data_eleicao) >= DATE_PART('year',NOW())) THEN
+	
+	-- verifica se ja ocorreu uma eleicao naquele ano
+	IF NOT EXISTS
+	(
+		SELECT * 
+		FROM adm_condominio.corpo_administrativo adm_ca
+		WHERE DATE_PART('year', adm_ca.data_eleicao) = DATE_PART('year', NEW.data_eleicao)
+	)
+	THEN
+	
+	-- verifica síndico ja foi eleito 2 vezes
+	IF 
+	(
+		SELECT COUNT(*) FROM elec_dois_ult_anos edua
+		WHERE edua.id_sindico = NEW.id_sindico
+	) < 2 THEN
+	
+	-- verifica sub-síndico ja foi eleito 2 vezes
+	IF 
+	(
+		SELECT COUNT(*) FROM elec_dois_ult_anos edua
+		WHERE edua.id_subsindico = NEW.id_subsindico
+	) < 2 THEN
+	
+	-- verifica conselheiro 1 ja foi eleito 2 vezes
+	IF 
+	(
+		SELECT COUNT(*) FROM elec_dois_ult_anos edua
+		WHERE edua.id_conselheiro_1 = NEW.id_conselheiro_1
+	) < 2 THEN
+	
+	
+	-- verifica conselheiro 2 ja foi eleito 2 vezes
+	IF 
+	(
+		SELECT COUNT(*) FROM elec_dois_ult_anos edua
+		WHERE edua.id_conselheiro_2 = NEW.id_conselheiro_2
+	) < 2 THEN
+	
+	
+	-- verifica conselheiro 3 ja foi eleito 2 vezes
+	IF 
+	(
+		SELECT COUNT(*) FROM elec_dois_ult_anos edua
+		WHERE edua.id_conselheiro_3 = NEW.id_conselheiro_3
+	) < 2 THEN
+	
+		RETURN NEW;
+	
+	-- else conselheiro 3 ja eleito
+	ELSE RAISE EXCEPTION 'O conselheiro 3 já foi eleito duas vezes seguidas nos últimos anos!';
+    END IF;
+	-- else conselheiro 2 ja eleito
+	ELSE RAISE EXCEPTION 'O conselheiro 2 já foi eleito duas vezes seguidas nos últimos anos!';
+    END IF;
+	-- else conselheiro 1 ja eleito
+	ELSE RAISE EXCEPTION 'O conselheiro 1 já foi eleito duas vezes seguidas nos últimos anos!';
+    END IF;
+	-- else subsindico ja eleito
+	ELSE RAISE EXCEPTION 'O sub-síndico já foi eleito duas vezes seguidas nos últimos anos!';
+    END IF;
+	-- else sindico ja eleito
+	ELSE RAISE EXCEPTION 'O síndico já foi eleito duas vezes seguidas nos últimos anos!';
+    END IF;
+	-- else ja ocorreu eleicao
+	ELSE RAISE EXCEPTION 'Um corpo já foi eleito esse ano!';
+	END IF;
+	-- else ano anterior ao atual
+	ELSE RAISE EXCEPTION 'Você não pode eleger um corpo para um ano anterior ao atual!';
+	END IF;
+	
+	DROP TABLE IF EXISTS elec_dois_ult_anos;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Criacao do TRIGGER
+
+SET SCHEMA 'adm_condominio';
+
+CREATE TRIGGER verifica_eleicao BEFORE INSERT ON adm_condominio.corpo_administrativo
+    FOR EACH ROW EXECUTE PROCEDURE eleicao_corpo_adm();
+
+-- Testes para o TRIGGER de insercao de eleicao_corpo_administrativo
+
+-- nao deixa inserir pq subsindico ja foi eleito 2 vezes
+
+INSERT INTO adm_condominio.corpo_administrativo
+(id_sindico, id_subsindico, id_conselheiro_1, id_conselheiro_2, id_conselheiro_3, data_eleicao) 
+VALUES (8,17,31,32,44,'2032-05-12');
+
+-- nao deixa inserir pq o corpo ja foi eleito naquele ano
+
+INSERT INTO adm_condominio.corpo_administrativo
+(id_sindico, id_subsindico, id_conselheiro_1, id_conselheiro_2, id_conselheiro_3, data_eleicao) 
+VALUES (8,17,31,32,44,'2030-05-12');
+
+-- nao deixa inserir pq a data de eleicao eh anterior ao ano atual
+
+INSERT INTO adm_condominio.corpo_administrativo
+(id_sindico, id_subsindico, id_conselheiro_1, id_conselheiro_2, id_conselheiro_3, data_eleicao) 
+VALUES (8,17,31,32,44,'2018-05-12');
+
+--------------------------------------------------------------------------------------------------------
+
+-- Criacao da funcao de assercao reserva_espaco
+
+SET SCHEMA 'adm_condominio';
+
+CREATE OR REPLACE FUNCTION reserva_espaco_unico() RETURNS TRIGGER AS $$
+BEGIN
+	-- verifica se o horario de encerramento da reserva eh superior a 22h
+	IF 
+	(SELECT NEW.hora_final) <= time '22:00:00' THEN
+	
+	-- verifica se a duracao da reserva eh maior que 6h
+	IF
+	(SELECT NEW.hora_final - NEW.hora_inicial) <= interval '06:00:00' THEN
+	
+	-- verifica se ele ja alugou um espaco no dia
+	IF NOT EXISTS
+	(
+		SELECT * FROM adm_condominio.reserva adm_r 
+		WHERE adm_r.fk_id_pessoa = NEW.fk_id_pessoa AND
+		adm_r.data = NEW.data
+	) THEN
+	
+	-- verifica se o espaco ja foi alugado naquele dia
+	IF NOT EXISTS
+	(
+		SELECT * FROM adm_condominio.reserva adm_r 
+		WHERE adm_r.fk_id_espaco = NEW.fk_id_espaco AND
+		adm_r.data = NEW.data 
+	) THEN
+	
+	-- verifica se ele ja alugou 3 espaços no mes do mesmo ano		
+	IF 
+	(
+		SELECT COUNT(*) FROM adm_condominio.reserva adm_r
+		WHERE adm_r.fk_id_pessoa = NEW.fk_id_pessoa AND 
+		DATE_PART('month', adm_r.data) = DATE_PART('month', NEW.data) AND
+		DATE_PART('year', adm_r.data) = DATE_PART('year', NEW.data)
+	) < 3 THEN
+			RETURN NEW;
+	
+	-- else pessoa ja tem mais que 3 reservas
+	ELSE RAISE EXCEPTION 'O condômino já tem mais que 3 reservas!';
+	END IF;
+
+	-- else espaco reservado no dia
+	ELSE RAISE EXCEPTION 'Esse espaço já foi reservado neste dia!';	
+	END IF;
+
+	-- else condomino ja reservou um espaco no dia
+	ELSE RAISE EXCEPTION 'Este condômino já reservou um espaço hoje!';
+	END IF;
+
+	-- else duracao 6h
+	ELSE RAISE EXCEPTION 'A duração da reserva ultrapassa 6 horas!';
+	END IF;
+
+	-- else hora final 22h
+	ELSE RAISE EXCEPTION 'A hora final da reserva deve ser até 22h!';
+	END IF;
+
+END;
+$$ LANGUAGE plpgsql;
+
+-- Criacao do TRIGGER reserva_espacos
+
+SET SCHEMA 'adm_condominio';
+
+CREATE TRIGGER reserva_espacos BEFORE INSERT ON adm_condominio.reserva
+    FOR EACH ROW EXECUTE PROCEDURE reserva_espaco_unico();
+
+-- Testes da TRIGGER
+
+-- o condomino ja reservou algum espaco naquele dia
+INSERT INTO adm_condominio.reserva VALUES (67,62,'12:00:00','18:00:00','2019-05-11');
+
+-- a duracao da reserva ultrapassa 6h
+INSERT INTO adm_condominio.reserva VALUES (67,3,'12:00:00','19:00:00','2019-05-11');
+
+-- o horario final excede o horario de silencio (22h)
+INSERT INTO adm_condominio.reserva VALUES (67,4,'18:00:00','22:30:00','2019-05-12');
