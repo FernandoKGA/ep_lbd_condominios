@@ -13,6 +13,53 @@ SELECT Pessoa.nome,
 	WHERE data_eleicao <= CAST(NOW() AS DATE) - interval '2 years'
 	GROUP BY 1;
 
+
+
+-- QUERY 2
+-- Listar as 5 pessoas e suas respectivas cidades com o maior número de ocorrências de entrada e saída
+
+WITH sum_entradas AS (
+		SELECT pessoa.id_pessoa AS id_pessoa, SUM(DATE_PART('epoch', Entrada_Saida.data_hora)) AS soma
+		FROM adm_condominio.Pessoa AS Pessoa
+		JOIN adm_condominio.Es_Pessoa AS Es_Pessoa ON Pessoa.id_pessoa = Es_Pessoa.fk_id_pessoa
+		JOIN adm_condominio.Entrada_Saida AS Entrada_Saida ON Entrada_Saida.id_es = Es_Pessoa.fk_id_es
+		WHERE Entrada_Saida.acao = 'e'
+		GROUP BY 1
+),
+
+sum_saidas AS (
+		SELECT pessoa.id_pessoa AS id_pessoa, SUM(DATE_PART('epoch', Entrada_Saida.data_hora )) AS soma
+		FROM adm_condominio.Pessoa AS Pessoa
+		JOIN adm_condominio.Es_Pessoa AS Es_Pessoa ON Pessoa.id_pessoa = Es_Pessoa.fk_id_pessoa
+		JOIN adm_condominio.Entrada_Saida AS Entrada_Saida ON Entrada_Saida.id_es = Es_Pessoa.fk_id_es
+		WHERE Entrada_Saida.acao = 's'
+		GROUP BY 1
+),
+
+top_five AS (
+	SELECT Pessoa.id_pessoa, SUM(sum_entradas.soma - sum_saidas.soma)
+		FROM adm_condominio.Pessoa AS Pessoa
+		JOIN sum_entradas ON sum_entradas.id_pessoa = Pessoa.id_pessoa
+		JOIN sum_saidas ON sum_saidas.id_pessoa = Pessoa.id_pessoa
+		GROUP BY 1 ORDER BY 2 DESC
+		LIMIT 5
+)
+
+SELECT Pessoa.nome, Endereco.cidade
+	FROM adm_condominio.Pessoa AS Pessoa
+	JOIN adm_condominio.Moradia_Pessoa AS Moradia_Pessoa 
+	  ON Moradia_Pessoa.fk_id_pessoa = Pessoa.id_pessoa
+	JOIN adm_condominio.Moradia AS Moradia
+	  ON Moradia.id_moradia = Moradia_Pessoa.fk_id_moradia
+	JOIN adm_condominio.Condominio_Moradia AS Condominio_Moradia
+	JOIN adm_condominio.Condominio AS Condominio
+	  ON Condominio.id_condominio = Condominio_Moradia.fk_id_condominio
+	  ON Condominio_Moradia.fk_id_condominio = Condominio.id_condominio
+	JOIN adm_condominio.Endereco AS Endereco
+	  ON Endereco.id_endereco = Condominio.fk_id_endereco
+	JOIN top_five
+	  ON top_five.id_pessoa = Pessoa.id_pessoa;
+
 -- QUERY 3
 -- VEICULOS
 
