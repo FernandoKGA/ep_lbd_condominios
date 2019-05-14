@@ -118,12 +118,12 @@ INSERT INTO adm_condominio.Assembleia (fk_id_condominio,id_assembleia,data,fk_id
 -- Apartamento
 -- 2 5 7 9 10 11 13 14 17 19 22 23 24 25 26 27 29 30 35 36
 INSERT INTO adm_condominio.Apartamento (fk_id_moradia,andar,final,numero_ap) VALUES (2,4,4,64),(5,7,1,177),(7,16,5,116),(9,20,10,65),(10,3,2,89),(11,2,2,138),(13,20,2,27),(14,2,10,198),(17,7,2,134),(19,14,10,9);
-INSERT INTO adm_condominio.Apartamento (fk_id_moradia,andar,final,numero_ap) VALUES (22,8,6,64),(23,9,7,38),(24,17,9,96),(25,13,7,115),(26,6,7,17),(27,15,6,71),(29,17,2,177),(30,4,2,23),(35,5,9,64),(36,8,3,194);
-
+INSERT INTO adm_condominio.Apartamento (fk_id_moradia,andar,final,numero_ap) VALUES (22,8,6,64),(23,9,7,38),(24,17,9,96),(25,13,7,115),(26,6,7,17),(27,15,6,71),(29,17,2,177),(30,4,2,23),(35,5,9,64),(36,8,3,194),
+INSERT INTO adm_condominio.Apartamento (fk_id_moradia,andar,final,numero_ap) VALUES (37,1,3,50),(40,7,8,99),(43,10,3,11),(44,5,7,20),(45,2,1,57),(46,8,8,88),(48,7,6,19),(49,1,3,78),(52,5,10,60),(53,8,1,14);
 -- Casa
-INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (61,43),(62,78),(63,20),(64,65),(65,2),(66,51),(67,15),(68,51),(69,17),(70,54);
-INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (71,30),(72,53),(73,2),(74,99),(75,17),(76,81),(77,53),(78,54),(79,93),(80,9);
-INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (81,79),(82,42),(83,47),(84,44),(85,53),(86,97),(87,69),(88,37),(89,64),(90,6);
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (1,43),(3,78),(4,20),(6,65),(8,2),(12,51),(15,15),(16,51),(18,17),(20,54);
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (21,30),(28,53),(31,2),(32,99),(33,17),(34,81),(38,53),(39,54),(41,93),(42,9);
+INSERT INTO adm_condominio.Casa (fk_id_moradia,numero_casa) VALUES (44,79),(47,42),(50,47),(51,44),(75,53),(76,97),(79,69),(80,37),(83,64),(88,6),(89,3);
 
 -- Relacionamentos
 
