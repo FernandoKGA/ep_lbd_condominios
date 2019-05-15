@@ -52,7 +52,7 @@ INSERT INTO adm_condominio.Edificio (nome_edificio,bloco,andares,qtd_finais,fk_i
 
 
 
---TRIGGER 2 - ta errado!!!
+--TRIGGER 2
 CREATE OR REPLACE FUNCTION fc_deleta_apartamentos()
 RETURNS trigger AS $tr_dapartamentos$
 BEGIN 
@@ -60,20 +60,19 @@ BEGIN
 	CREATE TABLE table_holder AS (SELECT fk_id_moradia FROM adm_condominio.Moradia_Edificio WHERE fk_id_edificio = old.id_edificio);
 
 	
-	DELETE FROM adm_condominio.Moradia_Pessoa WHERE fk_id_moradia IN 
-		(SELECT id_moradia from adm_condominio.Moradia WHERE id_moradia IN (SELECT * FROM table_holder));
+	DELETE FROM adm_condominio.Moradia_Pessoa WHERE fk_id_moradia IN (SELECT fk_id_moradia FROM table_holder);
 
-	DELETE FROM adm_condominio.Condominio_Moradia WHERE  fk_id_moradia IN (SELECT * FROM table_holder);
-	DELETE FROM adm_condominio.Apartamento WHERE  fk_id_moradia IN (SELECT * FROM table_holder);
+	DELETE FROM adm_condominio.Condominio_Moradia WHERE  fk_id_moradia IN (SELECT fk_id_moradia FROM table_holder);
+	DELETE FROM adm_condominio.Apartamento WHERE  fk_id_moradia IN (SELECT fk_id_moradia FROM table_holder);
 	DELETE FROM adm_condominio.Moradia_Edificio WHERE fk_id_edificio = old.id_edificio;
-	DELETE FROM adm_condominio.Moradia WHERE  id_moradia IN (SELECT * FROM table_holder);
+	DELETE FROM adm_condominio.Moradia WHERE  id_moradia IN (SELECT fk_id_moradia FROM table_holder);
 	DROP TABLE table_holder;
 RETURN NEW;
 END;
 $tr_dapartamentos$ LANGUAGE plpgsql;
 
 CREATE TRIGGER tr_deleta_apartamentos
-AFTER DELETE ON adm_condominio.Edificio
+before DELETE ON adm_condominio.Edificio
 FOR EACH ROW
 EXECUTE PROCEDURE fc_deleta_apartamentos();
 
