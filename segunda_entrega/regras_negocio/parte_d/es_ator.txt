@@ -1,4 +1,4 @@
-CREATE VIEW es_ator AS 
+﻿CREATE VIEW es_ator AS 
 	SELECT	entrada_saida.id_es AS id_es,
 			entrada_saida.data_hora AS data_hora, 
 			(CASE WHEN entrada_saida.acao = 'e'
@@ -21,4 +21,25 @@ CREATE VIEW es_ator AS
 				   ON veiculo.id_veiculo = es_veiculo.fk_id_veiculo
 				
 			ORDER BY 2 DESC
-			
+---------------------------------------------------------------
+
+Query 1 - Query que realiza a listagem de todas as entradas e saídas e seus respectivos atores, considerando apenas aquelas que ocorreram antes do período de 2 dias atrás.			
+
+SELECT * 
+	FROM es_ator 
+        WHERE data_hora < NOW() - interval '2 days' 
+
+----------------------------------------------------------------
+
+Query 2 - Conta o número de registros de entrada e saída por tipo de moradia.
+
+SELECT 	moradia.tipo_moradia, 
+	COUNT(es_ator.id_es)
+	FROM es_ator
+	LEFT JOIN adm_condominio.veiculo_moradia AS veiculo_moradia 
+	       ON es_ator.fk_id_ator = veiculo_moradia.fk_id_veiculo
+	LEFT JOIN adm_condominio.moradia_pessoa AS moradia_pessoa
+	       ON es_ator.fk_id_ator = moradia_pessoa.fk_id_pessoa
+	     JOIN adm_condominio.moradia AS moradia
+	       ON moradia.id_moradia IN (veiculo_moradia.fk_id_moradia, moradia_pessoa.fk_id_moradia)
+	GROUP BY 1
