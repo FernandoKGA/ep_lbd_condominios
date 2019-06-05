@@ -22,11 +22,6 @@ CREATE TYPE adm_condominio.TFuncionario AS
 	horario_saida time
 );
 
-CREATE TABLE adm_condominio.TipoPessoas
-(
-	pessoa TPessoa
-);
-
 CREATE TABLE adm_condominio.TipoCondominio
 (
 	id_condominio serial not null primary key,
