@@ -1,0 +1,15 @@
+SELECT v.marca, COUNT(v.*) FROM adm_condominio.Veiculo AS v,
+			adm_condominio.Veiculo_Moradia AS vM,
+			adm_condominio.Moradia AS m,
+			adm_condominio.Condominio_Moradia AS cM,
+			adm_condominio.Condominio AS c
+
+			WHERE vM.fk_id_veiculo = v.id_veiculo
+			AND m.id_moradia = vM.fk_id_moradia
+			AND m.tipo_moradia = 'a'
+			AND cM.fk_id_moradia = m.id_moradia
+			AND c.id_condominio = cM.fk_id_condominio
+			AND c.tipo_condominio = 'e'
+			GROUP BY v.marca
+			ORDER BY 2
+			LIMIT 3;
