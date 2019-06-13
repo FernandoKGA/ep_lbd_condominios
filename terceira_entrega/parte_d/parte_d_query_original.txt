@@ -1,0 +1,11 @@
+-- QUERY 3
+-- VEICULOS
+
+SELECT v.marca, COUNT(v.*) FROM adm_condominio.Veiculo AS v
+	INNER JOIN adm_condominio.Veiculo_Moradia AS vM ON vM.fk_id_veiculo = v.id_veiculo
+	INNER JOIN adm_condominio.Moradia AS m ON m.id_moradia = vM.fk_id_moradia AND m.tipo_moradia = 'a'
+	INNER JOIN adm_condominio.Condominio_Moradia AS cM ON cM.fk_id_moradia = m.id_moradia
+	INNER JOIN adm_condominio.Condominio AS c ON c.id_condominio = cM.fk_id_condominio AND c.tipo_condominio = 'e'
+	GROUP BY v.marca
+	ORDER BY 2
+	LIMIT 3;

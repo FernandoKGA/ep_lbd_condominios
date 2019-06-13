@@ -1,0 +1,33 @@
+Limit  (cost=328.45..328.46 rows=3 width=16) (actual time=0.255..0.258 rows=3 loops=1)
+  ->  Sort  (cost=328.45..328.55 rows=41 width=16) (actual time=0.254..0.254 rows=3 loops=1)
+        Sort Key: (count(v.*))
+        Sort Method: quicksort  Memory: 25kB
+        ->  HashAggregate  (cost=327.51..327.92 rows=41 width=16) (actual time=0.244..0.245 rows=4 loops=1)
+              Group Key: v.marca
+              ->  Hash Join  (cost=59.65..229.16 rows=19671 width=76) (actual time=0.231..0.237 rows=4 loops=1)
+                    Hash Cond: (vm.fk_id_moradia = m.id_moradia)
+                    ->  Hash Join  (cost=2.80..41.45 rows=2260 width=80) (actual time=0.111..0.116 rows=20 loops=1)
+                          Hash Cond: (vm.fk_id_veiculo = v.id_veiculo)
+                          ->  Seq Scan on veiculo_moradia vm  (cost=0.00..32.60 rows=2260 width=8) (actual time=0.020..0.020 rows=20 loops=1)
+                          ->  Hash  (cost=1.80..1.80 rows=80 width=80) (actual time=0.074..0.074 rows=80 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 17kB
+                                ->  Seq Scan on veiculo v  (cost=0.00..1.80 rows=80 width=80) (actual time=0.020..0.050 rows=80 loops=1)
+                    ->  Hash  (cost=47.06..47.06 rows=783 width=8) (actual time=0.108..0.108 rows=9 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          ->  Hash Join  (cost=5.20..47.06 rows=783 width=8) (actual time=0.094..0.104 rows=9 loops=1)
+                                Hash Cond: (cm.fk_id_moradia = m.id_moradia)
+                                ->  Hash Join  (cost=2.34..40.99 rows=1195 width=4) (actual time=0.051..0.060 rows=19 loops=1)
+                                      Hash Cond: (cm.fk_id_condominio = c.id_condominio)
+                                      ->  Seq Scan on condominio_moradia cm  (cost=0.00..32.60 rows=2260 width=8) (actual time=0.011..0.014 rows=40 loops=1)
+                                      ->  Hash  (cost=1.88..1.88 rows=37 width=4) (actual time=0.025..0.025 rows=37 loops=1)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                                            ->  Seq Scan on condominio c  (cost=0.00..1.88 rows=37 width=4) (actual time=0.010..0.018 rows=37 loops=1)
+                                                  Filter: (tipo_condominio = 'e'::bpchar)
+                                                  Rows Removed by Filter: 33
+                                ->  Hash  (cost=2.13..2.13 rows=59 width=4) (actual time=0.033..0.033 rows=59 loops=1)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 11kB
+                                      ->  Seq Scan on moradia m  (cost=0.00..2.13 rows=59 width=4) (actual time=0.012..0.021 rows=59 loops=1)
+                                            Filter: (tipo_moradia = 'a'::bpchar)
+                                            Rows Removed by Filter: 31
+Planning Time: 0.590 ms
+Execution Time: 0.431 ms
