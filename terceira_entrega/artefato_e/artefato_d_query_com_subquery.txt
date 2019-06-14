@@ -1,0 +1,24 @@
+
+WITH top_five AS (
+	SELECT Pessoa.id_pessoa AS id_pessoa, COUNT(es_pessoa.*) AS entradas
+		FROM adm_condominio.Pessoa AS Pessoa
+		JOIN adm_condominio.es_pessoa AS es_pessoa
+		  ON es_pessoa.fk_id_pessoa = Pessoa.id_pessoa
+		GROUP BY 1 ORDER BY 2,1 ASC
+		LIMIT 5
+)
+
+SELECT Pessoa.nome, top_five.entradas, Endereco.cidade
+	FROM adm_condominio.Pessoa AS Pessoa
+	INNER JOIN top_five
+	  ON top_five.id_pessoa = Pessoa.id_pessoa
+	JOIN adm_condominio.Moradia_Pessoa AS Moradia_Pessoa 
+	  ON Moradia_Pessoa.fk_id_pessoa = Pessoa.id_pessoa
+	JOIN adm_condominio.Moradia AS Moradia
+	  ON Moradia.id_moradia = Moradia_Pessoa.fk_id_moradia
+	JOIN adm_condominio.Condominio_Moradia AS Condominio_Moradia
+	  ON Condominio_Moradia.fk_id_moradia = Moradia.id_moradia
+	JOIN adm_condominio.Condominio AS Condominio
+	  ON Condominio.id_condominio = Condominio_Moradia.fk_id_condominio
+	JOIN adm_condominio.Endereco AS Endereco
+	  ON Endereco.id_endereco = Condominio.fk_id_endereco

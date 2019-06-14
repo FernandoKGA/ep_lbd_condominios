@@ -1,0 +1,18 @@
+
+SELECT Pessoa.nome, COUNT(es_pessoa.*), Endereco.cidade
+	FROM adm_condominio.Pessoa AS Pessoa
+	JOIN adm_condominio.es_pessoa AS es_pessoa
+	  ON es_pessoa.fk_id_pessoa = Pessoa.id_pessoa
+	JOIN adm_condominio.Moradia_Pessoa AS Moradia_Pessoa 
+	  ON Moradia_Pessoa.fk_id_pessoa = Pessoa.id_pessoa
+	JOIN adm_condominio.Moradia AS Moradia
+	  ON Moradia.id_moradia = Moradia_Pessoa.fk_id_moradia
+	JOIN adm_condominio.Condominio_Moradia AS Condominio_Moradia
+	  ON Condominio_Moradia.fk_id_moradia = Moradia.id_moradia
+	JOIN adm_condominio.Condominio AS Condominio
+	  ON Condominio.id_condominio = Condominio_Moradia.fk_id_condominio
+	JOIN adm_condominio.Endereco AS Endereco
+	  ON Endereco.id_endereco = Condominio.fk_id_endereco
+	GROUP BY 1,Pessoa.id_pessoa,3
+	ORDER BY 2,Pessoa.id_pessoa ASC
+	LIMIT 5
