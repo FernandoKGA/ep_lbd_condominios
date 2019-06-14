@@ -1,10 +1,15 @@
 SELECT tab.marca, COUNT(tab.*) 
 FROM 
-	(SELECT * FROM adm_condominio.Veiculo AS veic WHERE veic.id_veiculo IN 
-	(SELECT vM.fk_id_veiculo FROM adm_condominio.Veiculo_Moradia AS vM WHERE vM.fk_id_moradia IN 
-	(SELECT mor.id_moradia FROM adm_condominio.Moradia AS mor WHERE mor.tipo_moradia = 'a' AND mor.id_moradia IN
-	(SELECT cond_mor.fk_id_moradia FROM adm_condominio.Condominio_Moradia AS cond_mor WHERE cond_mor.fk_id_condominio IN 
-	(SELECT cond.id_condominio FROM adm_condominio.Condominio AS cond WHERE cond.tipo_condominio = 'e'))))) AS tab
+	(SELECT * FROM adm_condominio.Veiculo AS veic 
+	WHERE veic.id_veiculo IN 
+	(SELECT vM.fk_id_veiculo FROM adm_condominio.Veiculo_Moradia AS vM 
+	WHERE vM.fk_id_moradia IN 
+	(SELECT mor.id_moradia FROM adm_condominio.Moradia AS mor 
+	WHERE mor.tipo_moradia = 'a' AND mor.id_moradia IN
+	(SELECT cond_mor.fk_id_moradia FROM adm_condominio.Condominio_Moradia AS cond_mor 
+	WHERE cond_mor.fk_id_condominio IN 
+	(SELECT cond.id_condominio FROM adm_condominio.Condominio AS cond 
+	WHERE cond.tipo_condominio = 'e'))))) AS tab
 	GROUP BY tab.marca
 	ORDER BY 2
 	LIMIT 3;
